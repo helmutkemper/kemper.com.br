@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Navigation</title>
+    <meta charset="utf-8">
+    <link href="../content/shared/styles/examples-offline.css" rel="stylesheet">
+    <link href="../../styles/kendo.common.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.default.min.css" rel="stylesheet">
+    <link href="../../styles/kendo.default.mobile.min.css" rel="stylesheet">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jszip.min.js"></script>
+    <script src="../../js/kendo.all.min.js"></script>
+    <script src="../content/shared/js/console.js"></script>
+    <script>
+        
+    </script>
+    
+    
+</head>
+<body>
+    
+        <a class="offline-button" href="../index.html">Back</a>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.js"></script>
+<script>
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.2/pdf.worker.js';
+</script>
+
+<div id="example">
+    <div id="pdfViewer">
+    </div>
+    <div class="box wide">
+        <div class="box-col">
+            <h4>Focus</h4>
+            <ul class="keyboard-legend">
+                <li>
+                    <span class="button-preview">
+                        <span class="key-button leftAlign">Alt</span>
+                        +
+                        <span class="key-button">W</span>
+                    </span>
+                    <span class="button-descr">
+                        Focuses the toolbar of the PDFViewer.
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="box-col">
+            <h4>Supported keys and user actions</h4>
+            <ul class="keyboard-legend">
+                <li>
+                    <span class="button-preview">
+                        <span class="key-button">Tab</span>
+                    </span>
+                    <span class="button-descr">
+                        Focuses the next element in the toolbar.
+                    </span>
+                </li>
+                <li>
+                    <span class="button-preview">
+                        <span class="key-button wider leftAlign">Shift</span>
+                        +
+                        <span class="key-button">TAB</span>
+                    </span>
+                    <span class="button-descr">
+                        Focuses the previous element in the toolbar.
+                    </span>
+                </li>
+                <li>
+                    <span class="button-preview">
+                        <span class="key-button">Enter</span>
+                    </span>
+                    <span class="button-descr">
+                        Presses the focused toolbar button.
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#pdfViewer").kendoPDFViewer({
+            pdfjsProcessing: {
+                file: "../content/web/pdfViewer/sample.pdf"
+            },
+            width: "100%",
+            height: 700,
+        })
+    });
+
+    $(document.body).keydown(function (e) {
+        if (e.altKey && e.keyCode == 87) {
+            $("#pdfViewer").data("kendoPDFViewer").wrapper.focus();
+        }
+    });
+</script>
+
+    
+</body>
+</html>
