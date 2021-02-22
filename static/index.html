@@ -5,6 +5,9 @@
     <script src="js/util/monaco_actions_youtube.js"></script>
     <script src="js/util/monaco_actions_code.js"></script>
 
+    <script src="js/fontawesome/6bc51ce22b.js" crossorigin="anonymous"></script>
+
+
     <link href="./kendo/examples/content/shared/styles/examples-offline.css" rel="stylesheet">
     <link href="./kendo/styles/kendo.common.min.css" rel="stylesheet">
     <link href="./kendo/styles/kendo.rtl.min.css" rel="stylesheet">
@@ -20,15 +23,20 @@
         html, body, #container {
             position: fixed;
             left: 0px;
-            top: 41px;
+            top: 0px;
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: #ffffff;
+            background-color: #222;
             z-index: -1;
         }
+
+        .monaco-editor-adjust {
+            margin-top: 58px !important;
+            font-size: 12px;
+        }
+
         .decorBold {
             background-color: #255308;
             cursor: pointer;
@@ -44,6 +52,14 @@
 
     </style>
     <style>
+
+        .k-sprite {
+            width: 30px;
+            line-height: 30px;
+            font-size: 23px;
+            vertical-align: bottom !important;
+        }
+
         #mediaPlayer {
             min-width: 235px;
             height: 100%;
@@ -51,7 +67,6 @@
 
         .k-prompt-container, .k-window-content {
             padding: 0;
-            overflow: hidden;
             position: relative;
             outline: 0;
         }
@@ -59,12 +74,15 @@
         #megaStore {
             position: fixed;
             top: 0;
-            left: 50px;
+            left: 0px;
             border: 0px;
             margin: 0px auto;
         }
 
-        #menu {background: #ffffff;}
+        #menu {
+            background: #ffffff;
+            width: 10000px;
+        }
         #menu .k-menu .k-item, .k-menu.k-header {
             border-style: none;
             border-color: #ffffff;
@@ -73,7 +91,35 @@
             border-style: none;
         }
         .menuWith {
+            margin-left: 15px !important;
             height: 30px;
+            alignment: left !important;
+            vertical-align: middle !important;
+        }
+        .k-menu-group {
+            min-width: 181px;
+        }
+
+        .form-input--width-adjust{
+            width: 100%;
+        }
+
+        .form-monaco-adjust{
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+        }
+
+        .k-textbox .k-icon {
+            top: 50%;
+            margin: -8px 0 0;
+            position: absolute;
+            left: 4px;
+        }
+
+        .form-input-adjust{
+            width: 100%;
+            height: 300px !important;
         }
 
         #menu h2 {
@@ -114,6 +160,44 @@
             horiz-align:center;
         }
 
+
+        .fieldlist {
+            margin: 0;
+            padding: 0;
+        }
+
+        .windowContent{
+            overflow: scroll;
+        }
+
+        #controlPanelCode, #controlPanelLogin, #window .adjust {
+            margin: 0 auto 4.5em;
+            padding: 3em;
+            border: 0 none;
+        }
+
+        .fieldlist input {
+            width: 100%;
+        }
+        .fieldlist li {
+            list-style: none;
+            padding-bottom: 0;
+        }
+
+        .fieldlist .spanAdjust {
+            display: block;
+            height: 15px;
+        }
+
+        .fieldlist label {
+            display: block;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #444;
+            padding-bottom: 3px;
+        }
+
     </style>
 </header>
 <body>
@@ -129,19 +213,31 @@
 
         </ul>
     </div>
-    <div id="window">
-        <div class="armchair">
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <img src="./kendo/logos/logo_nova_200.png" alt="Kemper logo" />
-            <h3>C é vida;<br>Golang é uma evolução do C!</h3>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>Atualizado em 15/02/2021</p>
-        </div>
+
+
+</div>
+<div id="container" class="monaco-editor-adjust"></div>
+<div id="youtube">
+    <div id="mediaPlayer"></div>
+</div>
+
+</body>
+</html>
+
+<div id="window" class="k-content">
+    <div class="armchair">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <img src="./kendo/logos/logo_nova_200.png" alt="Kemper logo" />
+        <h3>C é vida;<br>Golang é uma evolução do C!</h3>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>Atualizado em 15/02/2021</p>
+    </div>
+    <div class="adjust">
         <p>&nbsp;</p>
         <p>Meu nome é <b>Helmut Kemper</b> e eu sou desenvolvedor Golang com uns 5 anos de expiencia em Go, além de uma vida de experiência em outras linguagens de programação.</p>
         <p>&nbsp;</p>
@@ -155,15 +251,76 @@
         <p>&nbsp;</p>
         <p>O projeto é totalmente gratuito, mas, você sempre pode me ajudar a pagar os servidores passando um pix.</p>
     </div>
-
-</div>
-<div id="container"></div>
-<div id="youtube">
-    <div id="mediaPlayer"></div>
 </div>
 
-</body>
-</html>
+<div id="controlPanelCode" class="k-content">
+    <div class="windowContent">
+        <ul class="adjust fieldlist">
+            <li>
+                <label for="menu-to-place">Menu</label>
+                <input id="menu-to-place" placeholder="Select..." type="text" class="form-input--width-adjust"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="publication-date">Conversation Title</label>
+                <input id="publication-date" class="k-textbox form-input--width-adjust"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="conversation-title">Conversation Title</label>
+                <input id="conversation-title" type="text" class="k-textbox"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="code-language">Code language</label>
+                <input id="code-language" placeholder="Select..." type="text" class="form-input--width-adjust"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="video-code">Youtube code from video</label>
+                <input id="video-code" type="text" class="k-textbox"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="source-code">Source-Code</label>
+                <div id="source-code" class="form-monaco-adjust"></div>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <button class="k-button k-primary">Save</button>
+                &nbsp;
+                <button class="k-button">Delete</button>
+                &nbsp;
+                <button class="k-button">Cancel</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="controlPanelLogin" class="k-content">
+    <div class="windowContent">
+        <ul class="adjust fieldlist">
+            <li>
+                <label for="login-mail">E-mail</label>
+                <input id="login-mail" class="k-textbox form-input--width-adjust"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" class="k-textbox"/>
+            </li>
+            <span class="spanAdjust"></span>
+            <li>
+                <button class="k-button k-primary">Login</button>
+                &nbsp;
+                <button class="k-button">I forgot my password</button>
+                &nbsp;
+                <button class="k-button">Cancel</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 <script>
     const videoDataUrl = "./saveTimeLine";
@@ -173,6 +330,10 @@
     let videoTime = 0;
     let youtubeCode;
     let youtubeActionList = [];
+
+    window.onresize = function (){
+        editor.layout();
+    };
 
     require.config({ paths: { 'vs': './node_modules/monaco-editor/min/vs' }});
     window.MonacoEnvironment = { getWorkerUrl: () => proxy };
@@ -191,7 +352,18 @@
 
         monaco.editor.defineTheme('myTheme', theme)
         editor = monaco.editor.create(document.getElementById('container'), {
-            value: [].join('\n'),
+            value: [
+                'package main\n' +
+                '\n' +
+                'import (\n' +
+                '\t"fmt"\n' +
+                ')\n' +
+                '\n' +
+                'func main() {\n' +
+                '\tfmt.Println("Hello, playground")\n' +
+                '}\n'
+            ].join('\n'),
+            fontSize: "14px",
             language: 'go',
             theme: 'myTheme'
         });
@@ -450,7 +622,7 @@
                 };
             }
         };
-        editor.addContentWidget(contentWidget);
+        //editor.addContentWidget(contentWidget);
 
 
 
@@ -484,7 +656,7 @@
 
 
 
-        
+
 
 
 
@@ -516,31 +688,33 @@
                 dataSource: [
                     {
                         text: "Kemper.com.br",
-                        spriteCssClass: "menuWith",
-                        imageUrl: "./kendo/logos/golang_black.png",
+                        spriteCssClass: "menuWith fas fa-code-branch",
                         items: [
                             {
+                                text: "Sobre mim",
+                                dataSpriteCssClassField: "k-test-menu",
+                                spriteCssClass: "menuWith fas fa-info-circle"
+                            },
+                            {
                                 text: "Github",
-                                spriteCssClass: "menuWith",
-                                url: "https://github.com/helmutkemper",
-                                imageUrl: "./kendo/logos/github_log.png"
+                                dataSpriteCssClassField: "k-test-menu",
+                                spriteCssClass: "menuWith fab fa-github",
+                                url: "https://github.com/helmutkemper"
                             },
                             {
                                 text: "LinkedIn",
-                                spriteCssClass: "menuWith",
-                                url: "https://www.linkedin.com/in/helmut-kemper-93a5441b/",
-                                imageUrl: "./kendo/logos/linkedin_logo.png"
+                                spriteCssClass: "menuWith fab fa-linkedin",
+                                url: "https://www.linkedin.com/in/helmut-kemper-93a5441b/"
                             }
                         ]
                     },
                     {
                         text: "Códigos",
-                        spriteCssClass: "menuWith",
-                        imageUrl: "./kendo/logos/youtube_logo.png",
+                        spriteCssClass: "menuWith fas fa-code",
                         items: [
                             {
                                 text: "Conversando com o dev",
-                                imageUrl: "../content/shared/icons/16/star.png",
+                                spriteCssClass: "menuWith fas fa-fire-extinguisher",
                                 items: [
                                     {
                                         text: "Conversando com o dev",
@@ -554,39 +728,57 @@
                             },
                             {
                                 text: "Sérgio Desenvolvedor",
-                                imageUrl: "../content/shared/icons/16/photo.png",
+                                spriteCssClass: "menuWith fas fa-fire",
                                 items: [
                                     {
                                         text: "Hello World"
                                     },
                                     {
-                                        text: "Sérgio Desenvolvedor",
-                                        imageUrl: "../content/shared/icons/16/photo.png"
+                                        text: "Sérgio Desenvolvedor"
                                     }
                                 ]
                             }
                         ]
                     },
                     {
-                        text: "Doação",
-                        spriteCssClass: "menuWith",
-                        imageUrl: "./kendo/logos/doacao_logo.png",
+                        text: "Admin",
+                        spriteCssClass: "menuWith fas fa-cogs",
+                        items: [
+                            {
+                                text: "Login"
+                            },
+                            {
+                                text: "New content"
+                            }
+                        ]
                     },
                     {
-                        text: "Sobre",
-                        spriteCssClass: "menuWith",
-                        imageUrl: "./kendo/logos/sobre_logo.png",
+                        text: "Doação",
+                        spriteCssClass: "menuWith fas fa-donate"
                     }
                 ]}
         );
 
         var myWindow = $("#window");
+        var controlPanelCode = $("#controlPanelCode");
         var winYoutube = $("#youtube");
+        var loginWindow = $("#controlPanelLogin");
 
         function onMenuSelect(e) {
             switch ($(e.item).children(".k-link").text()) {
-                case "Sobre":
+                case "Sobre mim":
                     myWindow.data("kendoWindow").open().center();
+                    break
+                case "Kemper.com.br":
+                    alert("funciona");
+                    break;
+                case "Login":
+                    loginWindow.data("kendoWindow").open().center();
+                    break;
+                case "New content":
+                    controlPanelCode.data("kendoWindow").open().center();
+                    break
+
             }
         }
 
@@ -607,6 +799,20 @@
                 "Maximize",
                 "Close"
             ],
+            open: function () {
+                mediaPlayer = $("#mediaPlayer").kendoMediaPlayer({
+                    autoPlay: true,
+                    fullScreen: false,
+                    navigatable: false,
+                    resize: function() {
+                        console.log(mediaPlayer.width);
+                        console.log(mediaPlayer.height);
+                    },
+                    media: {
+                        source: "https://www.youtube.com/watch?v=5oYfO5qPv44"
+                    }
+                }).data("kendoMediaPlayer");
+            },
             close: function() {
                 mediaPlayer.stop();
             }
@@ -620,22 +826,91 @@
             actions: [
                 "Close"
             ]
-        }).data("kendoWindow").open().center();
+        }).data("kendoWindow").center();
 
-        mediaPlayer = $("#mediaPlayer").kendoMediaPlayer({
-            autoPlay: true,
-            navigatable: false,
-            resize: function() {
-                console.log(mediaPlayer.width);
-                console.log(mediaPlayer.height);
-            },
-            media: {
-                title: "ProgressNEXT 2018 Highlights",
-                source: "https://www.youtube.com/watch?v=5oYfO5qPv44"
+        $("#menu-to-place").kendoDropDownTree({
+            placeholder: "Select ...",
+            filter: "startswith",
+            dataSource: [
+                {
+                    text: "Furniture", expanded: true, items: [
+                        { text: "Tables & Chairs" },
+                        { text: "Sofas" },
+                        { text: "Occasional Furniture" }
+                    ]
+                },
+                {
+                    text: "Decor", items: [
+                        { text: "Bed Linen" },
+                        { text: "Curtains & Blinds" },
+                        { text: "Carpets" }
+                    ]
+                }
+            ]
+        });
+
+        $("#code-language").kendoDropDownTree({
+            placeholder: "Select ...",
+            filter: "startswith",
+            dataSource: [
+                {
+                    text: "Furniture", expanded: true, items: [
+                        { text: "Tables & Chairs" },
+                        { text: "Sofas" },
+                        { text: "Occasional Furniture" }
+                    ]
+                },
+                {
+                    text: "Decor", items: [
+                        { text: "Bed Linen" },
+                        { text: "Curtains & Blinds" },
+                        { text: "Carpets" }
+                    ]
+                }
+            ]
+        });
+
+        controlPanelCode.kendoWindow({
+            width: "600px",
+            height: "400px",
+            title: "Conversation setup",
+            scrollable: true,
+            visible: false,
+            actions: [
+                "Maximize",
+                "Close"
+            ],
+            open: function() {
+                this.maximize();
+                require(["vs/editor/editor.main"], function () {
+                    let editor = monaco.editor.create(document.getElementById('source-code'), {
+                        value: [].join('\n'),
+                        language: 'go',
+                        theme: 'myTheme',
+                        minimap: { enabled: false },
+                        automaticLayout: true,
+                        scrollBeyondLastLine: false
+                    });
+
+                });
             }
-        }).data("kendoMediaPlayer");
+        }).data("kendoWindow").center();
 
+        loginWindow.kendoWindow({
+            width: "600px",
+            height: "220px",
+            title: "Login",
+            visible: false,
+            scrollable: false,
+            resizable: false,
+            actions: [
+                "Close"
+            ]
+        }).data("kendoWindow").center();
 
+        $("#publication-date").kendoDatePicker({
+            format: "dd/MM/yyyy",
+        });
 
         setInterval(function (){
             let timeHTML = $(".k-mediaplayer-currenttime").text();
