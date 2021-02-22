@@ -496,6 +496,18 @@
                     options: { inlineClassName: 'decorNone' }
                 },]);
 
+                // Scroll to top, in px:
+                //editor.setScrollPosition({scrollTop: 0});
+
+                //Scroll to a specific line:
+                //editor.revealLine(15);
+
+                //Scroll to a specific line so it ends in the center of the editor:
+                //editor.revealLineInCenter(15);
+
+                //Move current active line:
+                //editor.setPosition({column: 1, lineNumber: 3});
+
                 appendToYoutubeActionList(obj);
                 sendVideoData(obj);
             }
@@ -508,6 +520,7 @@
             contextMenuGroupId: "1videoPlayer",
             contextMenuOrder: 1.0,
             run: function() {
+                editor.focus();
                 mediaPlayer.play();
             }
         });
@@ -519,6 +532,7 @@
             contextMenuGroupId: "1videoPlayer",
             contextMenuOrder: 2.0,
             run: function() {
+                editor.focus();
                 mediaPlayer.pause();
             }
         });
@@ -530,6 +544,7 @@
             contextMenuGroupId: "1videoPlayer",
             contextMenuOrder: 3.0,
             run: function() {
+                editor.focus();
                 mediaPlayer.stop();
             }
         });
@@ -541,6 +556,7 @@
             contextMenuGroupId: "1videoPlayer",
             contextMenuOrder: 4.0,
             run: function() {
+                editor.focus();
                 mediaPlayer.mute(!mediaPlayer.mute());
             }
         });
@@ -571,6 +587,8 @@
                     ),
                     options: { inlineClassName: 'decorBold' }
                 },]);
+
+                //editor.revealLineInCenter(selectionData.selection.startLineNumber);
 
                 appendToYoutubeActionList(obj);
                 sendVideoData(obj);
@@ -804,6 +822,24 @@
                     autoPlay: true,
                     fullScreen: false,
                     navigatable: false,
+                    play: function(){
+                        editor.focus()
+                    },
+                    pause: function(){
+                        editor.focus()
+                    },
+                    end: function(){
+                        editor.focus()
+                    },
+                    ready: function(){
+                        editor.focus()
+                    },
+                    timeChange: function(){
+                        editor.focus()
+                    },
+                    volumeChange: function(){
+                        editor.focus()
+                    },
                     resize: function() {
                         console.log(mediaPlayer.width);
                         console.log(mediaPlayer.height);
@@ -972,6 +1008,8 @@
                     ),
                     options: { inlineClassName: 'decorBold' }
                 },]);
+
+                editor.revealLineInCenter(currentTimeActionInfo.startLineNumber);
             }
 
             if(currentTimeActionInfo.action === 'clear') {
