@@ -173,7 +173,7 @@
             overflow: scroll;
         }
 
-        #controlPanelCode, #controlPanelLogin, #window .adjust {
+        #controlPanelForgotPassword, #controlPanelCode, #controlPanelLogin, #window .adjust {
             margin: 0 auto 4.5em;
             padding: 3em;
             border: 0 none;
@@ -321,6 +321,23 @@
                 <button class="k-button">Cancel</button>
             </li>
         </ul>
+    </div>
+</div>
+
+<div id="controlPanelForgotPassword" class="k-content">
+    <div class="windowContent">
+        <form id="ticketsForm" class="f-form" onsubmit="return false">
+            <ul class="adjust fieldlist">
+                <li>
+                    <label for="forgot-mail">E-mail</label>
+                    <input id="forgot-mail" type="email" class="k-textbox form-input--width-adjust" required/>
+                </li>
+                <span class="spanAdjust"></span>
+                <li>
+                    <button type="submit" id="forgot-password-send-button" class="k-button k-primary">Send</button>
+                </li>
+            </ul>
+        </form>
     </div>
 </div>
 
@@ -473,6 +490,28 @@
         });
 
         editor.addAction({
+            id: "setReadOnly",
+            label: "Set read only",
+            keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_R],
+            contextMenuGroupId: "0codeVideoGroup",
+            contextMenuOrder: 0.1,
+            run: function() {
+                editor.updateOptions({readOnly: true});
+            }
+        });
+
+        editor.addAction({
+            id: "clearReadOnly",
+            label: "Clear read only",
+            keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KEY_R],
+            contextMenuGroupId: "0codeVideoGroup",
+            contextMenuOrder: 0.2,
+            run: function() {
+                editor.updateOptions({readOnly: false});
+            }
+        });
+
+        editor.addAction({
             id: "clearCode",
             label: "clear code selector",
             keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_0],
@@ -510,6 +549,40 @@
 
                 //Move current active line:
                 //editor.setPosition({column: 1, lineNumber: 3});
+
+                appendToYoutubeActionList(obj);
+                sendVideoData(obj);
+            }
+        });
+
+        editor.addAction({
+            id: "selectCode",
+            label: "set code selector",
+            keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_1],
+            contextMenuGroupId: "0codeVideoGroup",
+            contextMenuOrder: 2.0,
+            run: function() {
+                let obj = {
+                    'action': 'selection',
+                    'time': videoTime,
+                    'startLineNumber': selectionData.selection.startLineNumber,
+                    'startColumn': selectionData.selection.startColumn,
+                    'endLineNumber': selectionData.selection.endLineNumber,
+                    'endColumn': selectionData.selection.endColumn,
+                    'youtubeCode': youtubeCode
+                }
+editor.readOnly = false
+                oldDecorations = editor.deltaDecorations(oldDecorations, [{
+                    range: new monaco.Range(
+                        selectionData.selection.startLineNumber,
+                        selectionData.selection.startColumn,
+                        selectionData.selection.endLineNumber,
+                        selectionData.selection.endColumn
+                    ),
+                    options: { inlineClassName: 'decorBold' }
+                },]);
+
+                //editor.revealLineInCenter(selectionData.selection.startLineNumber);
 
                 appendToYoutubeActionList(obj);
                 sendVideoData(obj);
@@ -563,43 +636,6 @@
                 mediaPlayer.mute(!mediaPlayer.mute());
             }
         });
-
-        editor.addAction({
-            id: "selectCode",
-            label: "set code selector",
-            keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_1],
-            contextMenuGroupId: "0codeVideoGroup",
-            contextMenuOrder: 2.0,
-            run: function() {
-                let obj = {
-                    'action': 'selection',
-                    'time': videoTime,
-                    'startLineNumber': selectionData.selection.startLineNumber,
-                    'startColumn': selectionData.selection.startColumn,
-                    'endLineNumber': selectionData.selection.endLineNumber,
-                    'endColumn': selectionData.selection.endColumn,
-                    'youtubeCode': youtubeCode
-                }
-
-                oldDecorations = editor.deltaDecorations(oldDecorations, [{
-                    range: new monaco.Range(
-                        selectionData.selection.startLineNumber,
-                        selectionData.selection.startColumn,
-                        selectionData.selection.endLineNumber,
-                        selectionData.selection.endColumn
-                    ),
-                    options: { inlineClassName: 'decorBold' }
-                },]);
-
-                //editor.revealLineInCenter(selectionData.selection.startLineNumber);
-
-                appendToYoutubeActionList(obj);
-                sendVideoData(obj);
-            }
-        });
-
-
-
 
         require.config({ paths: { 'vs': './node_modules/monaco-editor/esm/vs' }});
         let menus = require('vs/platform/actions/common/actions').MenuRegistry._menuItems;
@@ -784,6 +820,7 @@
         var controlPanelCode = $("#controlPanelCode");
         var winYoutube = $("#youtube");
         var loginWindow = $("#controlPanelLogin");
+        var forgotPasswordWindow = $("#controlPanelForgotPassword");
 
         function onMenuSelect(e) {
             switch ($(e.item).children(".k-link").text()) {
@@ -946,6 +983,36 @@
                 "Close"
             ]
         }).data("kendoWindow").center();
+
+        $("#forgot-password-send-button").kendoButton({
+            click: function() {
+
+            }
+        });
+
+        forgotPasswordWindow.kendoWindow({
+            width: "600px",
+            height: "160px",
+            title: "Login",
+            visible: false,
+            scrollable: false,
+            resizable: false,
+            actions: [
+                "Close"
+            ],
+            open: function() {
+                $("#forgot-password-send-button").kendoButton({
+                    click: function() {
+
+                    }
+                });
+                $("#forgot-password-cancel-button").kendoButton({
+                    click: function() {
+                        forgotPasswordWindow.close();
+                    }
+                });
+            },
+        }).data("kendoWindow").center().open();
 
         $("#publication-date").kendoDatePicker({
             format: "dd/MM/yyyy",
