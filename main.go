@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -9,7 +10,6 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
-	"reflect"
 	"strconv"
 	"time"
 
@@ -17,66 +17,28 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type ToJsObject map[string]interface{}
-
-func (e *ToJsObject) Convert() (jsObject []byte) {
-	element := reflect.ValueOf(e).Elem()
-	//mapKeys := element.MapKeys()
-	//typeField := element.Type()
-
-	switch element.Kind() {
-	case reflect.Map:
-		fmt.Printf("string: %v\n", element.Type().String())
-		fmt.Printf("name: %v\n", element.Type().Name())
-		fmt.Printf("keys: %v\n", element.MapKeys())
-
-		for _, i := range element.MapKeys() {
-			field := i.Type().Key()
-			typeField := i.Type().String()
-
-			_ = field
-			_ = typeField
-		}
-
-		//e := element.Elem()
-		//for i := 0; i < e.NumField(); i += 1 {
-		//	field := e.Field(i)
-		//	typeField := e.Type().Field(i)
-		//
-		//	_ = field
-		//	_ = typeField
-		//}
-	case reflect.Bool:
-	case reflect.Float32:
-	case reflect.Float64:
-	case reflect.Int:
-	case reflect.Slice:
-	case reflect.String:
-	case reflect.Struct:
-	case reflect.Interface:
-		fmt.Printf("name: %v\n", element.Type().Name())
-		fmt.Printf("key: %v\n", element.Type().Key())
-	}
-
-	fmt.Printf("kind: %v\n", element.Kind())
-
-	os.Exit(1)
-
-	for i := 0; i < element.NumField(); i += 1 {
-		field := element.Field(i)
-		typeField := element.Type().Field(i)
-
-		_ = field
-		_ = typeField
-	}
-
-	return nil
+type UniqueKeyInterface interface {
+	Make() (uniqueKey string)
 }
 
-var uniqueKeyBase = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "&", "*", "(", ")", "_", "=", "-", "+", "[", "]", "{", "}", "|", "/", "?", "<", ">", ";", ":"}
+type PasswordInterface interface {
+	MakeHash(password []byte) (hash []byte, err error)
+	CheckHash(password, hash []byte) (match bool)
+}
 
-func UniqueKeyMake() (uniqueKey string) {
+type DataInterface interface {
+	Init() (err error)
+	Connect(filePath string) (err error)
+	MailExists(mail string) (found bool, err error)
+	MailHasVerified(mail string) (mailHasVerified bool, err error)
+	UserInsert(name, nickname string, gender, userType int, mail, password string, mailVerified int) (err error)
+	GetPassword(mail string) (password string, err error)
+}
 
+type UniqueKey struct{}
+
+func (e *UniqueKey) Make() (uniqueKey string) {
+	var uniqueKeyBase = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "&", "*", "(", ")", "_", "=", "-", "+", "[", "]", "{", "}", "|", "/", "?", "<", ">", ";", ":"}
 	var randonGenerator = rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := 0; i != 50; i += 1 {
 		uniqueKey += uniqueKeyBase[randonGenerator.Intn(82-1)]
@@ -85,18 +47,29 @@ func UniqueKeyMake() (uniqueKey string) {
 	return
 }
 
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 30)
-	return string(bytes), err
+type Password struct{}
+
+func (e *Password) MakeHash(password []byte) (hash []byte, err error) {
+	hash, err = bcrypt.GenerateFromPassword(password, 30)
+	return
 }
 
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+func (e *Password) CheckHash(password, hash []byte) (match bool) {
+	var err = bcrypt.CompareHashAndPassword(hash, password)
 	return err == nil
 }
 
-func DatabaseCreateTables(database *sql.DB) (err error) {
-	err = DatabaseUserCreate(database)
+type SQLite3 struct {
+	database *sql.DB
+}
+
+func (e *SQLite3) Connect(filePath string) (err error) {
+	e.database, err = sql.Open("sqlite3", filePath)
+	return
+}
+
+func (e *SQLite3) Init() (err error) {
+	err = e.userCreate()
 	if err != nil {
 		return
 	}
@@ -104,14 +77,9 @@ func DatabaseCreateTables(database *sql.DB) (err error) {
 	return
 }
 
-func DatabaseUserCreate(
-	database *sql.DB,
-) (
-	err error,
-) {
-
+func (e *SQLite3) userCreate() (err error) {
 	var statement *sql.Stmt
-	statement, err = database.Prepare(`
+	statement, err = e.database.Prepare(`
 		CREATE TABLE IF NOT EXISTS 
 			user (
 				id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -133,17 +101,19 @@ func DatabaseUserCreate(
 	return
 }
 
-func DatabaseUserInsertVerifyMail(
-	database *sql.DB,
-	mail string,
-) (
-	err error,
-	found bool,
-) {
-
+func (e *SQLite3) MailExists(mail string) (found bool, err error) {
 	var rows *sql.Rows
-
-	rows, err = database.Query(`SELECT id FROM user WHERE mail = "?"`, mail)
+	rows, err = e.database.Query(
+		`
+			SELECT 
+				id 
+			FROM 
+				user 
+			WHERE 
+				mail = ?
+		`,
+		mail,
+	)
 	if err != nil {
 		return
 	}
@@ -152,17 +122,20 @@ func DatabaseUserInsertVerifyMail(
 	return
 }
 
-func DatabaseUserLoginVerifyMail(
-	database *sql.DB,
-	mail string,
-) (
-	err error,
-	mailHasVerified bool,
-) {
-
+func (e *SQLite3) MailHasVerified(mail string) (mailHasVerified bool, err error) {
 	var rows *sql.Rows
-
-	rows, err = database.Query(`SELECT id FROM user WHERE mail = "?" AND mailVerified = 1`, mail)
+	rows, err = e.database.Query(
+		`
+			SELECT 
+				   id 
+			FROM 
+				 user 
+			WHERE 
+				  mail = ? 
+			  AND mailVerified = 1
+		  `,
+		mail,
+	)
 	if err != nil {
 		return
 	}
@@ -171,54 +144,79 @@ func DatabaseUserLoginVerifyMail(
 	return
 }
 
-func DatabaseUserInsert(
-	database *sql.DB,
-	name,
-	nickname string,
-	gender,
-	userType int,
-	mail,
-	password string,
-	mailVerified int,
-) (
-	err error,
-) {
-
+func (e *SQLite3) UserInsert(name, nickname string, gender, userType int, mail, password string, mailVerified int) (err error) {
 	var statement *sql.Stmt
-
-	statement, err = database.Prepare(`
-		INSERT INTO people (
-			name,
-			nickname,
-			gender,
-			userType,
-			mail,
-			password,
-			mailVerified
-		) 
-		VALUES (
-			?,
-			?,
-			?,
-			?,
-			?,
-			?,
-			?
-		)`,
+	statement, err = e.database.Prepare(`
+		INSERT INTO 
+		    user (name, nickname, gender, userType, mail, password, mailVerified) 
+		VALUES   
+		       	 (?,    ?,        ?,      ?,        ?,    ?,        ?)`,
 	)
 	if err != nil {
 		return
 	}
 
-	_, err = statement.Exec(
-		name,
-		nickname,
-		gender,
-		userType,
+	_, err = statement.Exec(name, nickname, gender, userType, mail, password, mailVerified)
+	return
+}
+
+func (e *SQLite3) GetPassword(mail string) (password string, err error) {
+	var rows *sql.Rows
+	rows, err = e.database.Query(`
+		SELECT 
+		       password 
+		FROM 
+		     user 
+		WHERE 
+		      mail = ?`,
 		mail,
-		password,
-		mailVerified,
 	)
+	if err != nil {
+		return
+	}
+
+	for rows.Next() {
+		err = rows.Scan(&password)
+		return
+	}
+
+	return
+}
+
+type BusinessRules struct {
+	UniqueKey UniqueKeyInterface
+	Password  PasswordInterface
+	Data      DataInterface
+}
+
+func (e *BusinessRules) Login(mail, password string) (successful bool, err error) {
+	var hashPassword string
+
+	successful, err = e.Data.MailExists(mail)
+	if err != nil {
+		return
+	}
+	if successful == false {
+		return false, errors.New("email not found")
+	}
+
+	successful, err = e.Data.MailHasVerified(mail)
+	if err != nil {
+		return
+	}
+	if successful == false {
+		return false, errors.New("email has not yet been verified")
+	}
+
+	hashPassword, err = e.Data.GetPassword(mail)
+	if err != nil {
+		return
+	}
+
+	successful = e.Password.CheckHash([]byte(password), []byte(hashPassword))
+	if successful != true {
+		return false, errors.New("password does not match")
+	}
 	return
 }
 
