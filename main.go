@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -10,6 +11,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 	"time"
 
@@ -24,6 +26,7 @@ type UniqueKeyInterface interface {
 type PasswordInterface interface {
 	MakeHash(password []byte) (hash []byte, err error)
 	CheckHash(password, hash []byte) (match bool)
+	NewPasswordRule(password []byte) (err error)
 }
 
 type DataInterface interface {
@@ -38,7 +41,10 @@ type DataInterface interface {
 type UniqueKey struct{}
 
 func (e *UniqueKey) Make() (uniqueKey string) {
-	var uniqueKeyBase = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#", "$", "%", "&", "*", "(", ")", "_", "=", "-", "+", "[", "]", "{", "}", "|", "/", "?", "<", ">", ";", ":"}
+	var uniqueKeyBase = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+		"r", "s", "t", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+		"P", "Q", "R", "S", "T", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "@", "#",
+		"$", "%", "&", "*", "(", ")", "_", "=", "-", "+", "[", "]", "{", "}", "|", "/", "?", "<", ">", ";", ":"}
 	var randonGenerator = rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := 0; i != 50; i += 1 {
 		uniqueKey += uniqueKeyBase[randonGenerator.Intn(82-1)]
@@ -48,6 +54,83 @@ func (e *UniqueKey) Make() (uniqueKey string) {
 }
 
 type Password struct{}
+
+func (e *Password) ruleLength(password []byte) (err error) {
+	if len(password) < 8 {
+		err = errors.New("the password must be 8 letters or more")
+	}
+
+	return
+}
+
+func (e *Password) ruleOneSpecialChars(password []byte) (err error) {
+	var char []byte
+	var specialChars = [][]byte{[]byte("`"), []byte("~"), []byte("!"), []byte("@"), []byte("#"), []byte("$"),
+		[]byte("%"), []byte("^"), []byte("&"), []byte("*"), []byte("("), []byte(")"), []byte("-"), []byte("_"),
+		[]byte("+"), []byte("="), []byte("["), []byte("{"), []byte("]"), []byte("}"), []byte("|"), []byte("\\"),
+		[]byte(";"), []byte(":"), []byte("\""), []byte("'"), []byte("<"), []byte(">"), []byte(","), []byte("."),
+		[]byte("/"), []byte("?")}
+	for char = range specialChars {
+		if bytes.Contains(char, password) {
+			return
+		}
+	}
+
+	err = errors.New("the password must be one special char")
+	return
+}
+
+func (e *Password) ruleUpperLetter(password []byte) (err error) {
+	var char []byte
+	var specialChars = [][]byte{[]byte("A"), []byte("B"), []byte("C"), []byte("D"), []byte("E"), []byte("F"),
+		[]byte("G"), []byte("H"), []byte("I"), []byte("J"), []byte("K"), []byte("L"), []byte("M"), []byte("N"),
+		[]byte("O"), []byte("P"), []byte("Q"), []byte("R"), []byte("S"), []byte("T"), []byte("V"), []byte("W"),
+		[]byte("X"), []byte("Y"), []byte("Z")}
+	for char = range specialChars {
+		if bytes.Contains(char, password) {
+			return
+		}
+	}
+
+	err = errors.New("the password must be one upper case char")
+	return
+}
+
+func (e *Password) ruleLowerCase(password []byte) (err error) {
+	var char []byte
+	var specialChars = [][]byte{[]byte("a"), []byte("b"), []byte("c"), []byte("d"), []byte("e"), []byte("f"),
+		[]byte("g"), []byte("h"), []byte("i"), []byte("j"), []byte("k"), []byte("l"), []byte("m"), []byte("n"),
+		[]byte("o"), []byte("p"), []byte("q"), []byte("r"), []byte("s"), []byte("t"), []byte("v"), []byte("w"),
+		[]byte("x"), []byte("y"), []byte("z")}
+	for char = range specialChars {
+		if bytes.Contains(char, password) {
+			return
+		}
+	}
+
+	err = errors.New("the password must be one lower case char")
+	return
+}
+
+func (e *Password) NewPasswordRule(password []byte) (err error) {
+	err = e.ruleLength(password)
+	if err != nil {
+		return
+	}
+
+	err = e.ruleOneSpecialChars(password)
+	if err != nil {
+		return
+	}
+
+	err = e.ruleUpperLetter(password)
+	if err != nil {
+		return
+	}
+
+	err = e.ruleLowerCase(password)
+	return
+}
 
 func (e *Password) MakeHash(password []byte) (hash []byte, err error) {
 	hash, err = bcrypt.GenerateFromPassword(password, 30)
@@ -189,7 +272,12 @@ type BusinessRules struct {
 	Data      DataInterface
 }
 
-func (e *BusinessRules) Login(mail, password string) (successful bool, err error) {
+func (e *BusinessRules) MailSyntax(mail string) (matched bool, err error) {
+	matched, err = regexp.MatchString("(?:[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])", mail)
+	return
+}
+
+func (e *BusinessRules) UserLogin(mail, password string) (successful bool, err error) {
 	var hashPassword string
 
 	successful, err = e.Data.MailExists(mail)
@@ -217,6 +305,27 @@ func (e *BusinessRules) Login(mail, password string) (successful bool, err error
 	if successful != true {
 		return false, errors.New("password does not match")
 	}
+	return
+}
+
+func (e *BusinessRules) UserNew(name, nickname string, gender int, mail, password string) (err error) {
+	var pass bool
+
+	pass, err = e.MailSyntax(mail)
+	if err != nil {
+		return
+	}
+	if pass == false {
+		err = errors.New("e-mail must be a valid syntax")
+		return
+	}
+
+	err = e.Password.NewPasswordRule([]byte(password))
+	if err != nil {
+		return
+	}
+
+	err = e.Data.UserInsert(name, nickname, gender, 0, mail, password, 0)
 	return
 }
 
