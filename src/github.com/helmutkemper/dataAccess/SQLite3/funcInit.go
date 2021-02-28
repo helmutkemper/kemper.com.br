@@ -1,4 +1,4 @@
-package SQLite3
+package sqlite3
 
 func (e *SQLite3) Init() (err error) {
 	err = e.userCreate()

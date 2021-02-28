@@ -1,16 +1,38 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	sqlite3 "github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/SQLite3"
+	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
 	_ "github.com/mattn/go-sqlite3"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	var err error
+
+	var menu []dataFormat.Menu
+	var sql3 = sqlite3.SQLite3{}
+	err = sql3.Connect("./db/database.sqlite")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	menu, err = sql3.GetMenu(0, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var b []byte
+	b, _ = json.Marshal(&menu)
+
+	fmt.Printf("%s", b)
+	os.Exit(0)
 
 	r := gin.Default()
 	r.StaticFS("/static", http.Dir("./static"))

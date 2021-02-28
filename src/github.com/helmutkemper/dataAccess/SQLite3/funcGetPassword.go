@@ -1,6 +1,8 @@
-package SQLite3
+package sqlite3
 
-import "database/sql"
+import (
+	"database/sql"
+)
 
 func (e *SQLite3) GetPassword(mail string) (password string, err error) {
 	var rows *sql.Rows
