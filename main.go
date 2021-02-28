@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	sqlite3 "github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/SQLite3"
 	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
+	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/view/dataSource"
 	_ "github.com/mattn/go-sqlite3"
 	"io/ioutil"
 	"log"
@@ -28,10 +29,16 @@ func main() {
 		log.Fatal(err)
 	}
 
-	var b []byte
-	b, _ = json.Marshal(&menu)
+	var dm = dataSource.Menu{}
+	dm.CommonDataConvert(&menu, nil)
 
-	fmt.Printf("%s", b)
+	var b []byte
+	b, err = json.Marshal(&dm)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("\n\n\n%s\n\n\n", b)
+
 	os.Exit(0)
 
 	r := gin.Default()
