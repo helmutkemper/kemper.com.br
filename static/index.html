@@ -737,7 +737,23 @@ editor.readOnly = false
 <script>
     var timeOutVideo;
     var mediaPlayer;
+    var notification;
     $(document).ready(function() {
+        notification = $("#notification").kendoNotification({
+            position: {
+                pinned: true,
+                top: 30,
+                right: 30
+            },
+            autoHideAfter: 0,
+            stacking: "down",
+            templates: [{
+                type: "error",
+                template: $("#errorTemplate").html()
+            }]
+
+        }).data("kendoNotification");
+
         $("#menu").kendoMenu(
             {
                 select: onMenuSelect,
@@ -906,22 +922,58 @@ editor.readOnly = false
         $("#menu-to-place").kendoDropDownTree({
             placeholder: "Select ...",
             filter: "startswith",
+            dataTextField: "text",
+            dataValueField: "value",
             dataSource: [
                 {
-                    text: "Furniture", expanded: true, items: [
-                        { text: "Tables & Chairs" },
-                        { text: "Sofas" },
-                        { text: "Occasional Furniture" }
+                    text: "Furniture",
+                    value: "",
+                    expanded: true,
+                    items: [
+                        {
+                            text:  "Tables & Chairs",
+                            value: "Tables & Chairs"
+                        },
+                        {
+                            text:  "Sofas",
+                            value: "Sofas"
+                        },
+                        {
+                            text:  "Occasional Furniture",
+                            value: "Occasional Furniture"
+                        }
                     ]
                 },
                 {
-                    text: "Decor", items: [
-                        { text: "Bed Linen" },
-                        { text: "Curtains & Blinds" },
-                        { text: "Carpets" }
+                    text: "Decor",
+                    expanded: true,
+                    items: [
+                        {
+                            text:  "Bed Linen",
+                            value: "Bed Linen"
+                        },
+                        {
+                            text:  "Curtains & Blinds",
+                            value: "Curtains & Blinds"
+                        },
+                        {
+                            text:  "Carpets",
+                            value: "Carpets"
+                        }
                     ]
                 }
-            ]
+            ],
+            change: function(e) {
+                if (typeof this.value() === "object") {
+                    notification.show({
+                        title: "Wrong Menu Item",
+                        message: "Please select another item from menu."
+                    }, "error");
+                } else {
+                    console.log('e.value:', this.value());
+                    notification.hide();
+                }
+            }
         });
 
         $("#code-language").kendoDropDownTree({
@@ -1096,4 +1148,33 @@ editor.readOnly = false
 
 
     });
+</script>
+
+<style>
+    /* Notifications */
+    .k-notification h3 {
+        padding: 30px 10px 5px;
+        font-size: 1em;
+        line-height: normal;
+    }
+    .k-notification img {
+        margin: 20px;
+        float: left;
+    }
+
+    /* Error template */
+    .wrong-pass {
+        width: 300px;
+        height: 100px;
+    }
+
+</style>
+
+<span id="notification" style="display:none;"></span>
+<script id="errorTemplate" type="text/x-kendo-template">
+    <div class="wrong-pass">
+        <img src="http://localhost:3000/static/kendo/examples/content/web/notification/error-icon.png" />
+        <h3>#= title #</h3>
+        <p>#= message #</p>
+    </div>
 </script>
