@@ -1,7 +1,9 @@
 package sqlite3
 
-import "database/sql"
+import (
+	"database/sql"
+)
 
 type SQLite3 struct {
-	database *sql.DB
+	Database *sql.DB
 }

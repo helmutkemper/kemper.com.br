@@ -6,7 +6,7 @@ import (
 
 func (e *SQLite3) GetPassword(mail string) (password string, err error) {
 	var rows *sql.Rows
-	rows, err = e.database.Query(`
+	rows, err = e.Database.Query(`
 		SELECT 
 		       password 
 		FROM 

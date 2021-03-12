@@ -4,7 +4,7 @@ import "database/sql"
 
 func (e *SQLite3) MailHasVerified(mail string) (mailHasVerified bool, err error) {
 	var rows *sql.Rows
-	rows, err = e.database.Query(
+	rows, err = e.Database.Query(
 		`
 			SELECT 
 				   id 
