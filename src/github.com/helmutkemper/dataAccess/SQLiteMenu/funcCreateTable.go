@@ -4,7 +4,7 @@ import (
 	"database/sql"
 )
 
-func (e *SQLiteMenu) CreateTable() (err error) {
+func (e *SQLiteMenu) createTable() (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(`
 		CREATE TABLE IF NOT EXISTS

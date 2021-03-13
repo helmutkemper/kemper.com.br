@@ -6,8 +6,8 @@ type Menu struct {
 	IdSecondary int    `json:"secondaryId"`
 	Text        string `json:"text"`
 	Admin       int    `json:"admin"`
-	Icon        string `json:"icon"`
-	Url         string `json:"url"`
+	Icon        string `json:"icon,omitempty"`
+	Url         string `json:"url,omitempty"`
 	ItemOrder   int    `json:"itemOrder"`
-	Menu        []Menu `json:"menu"`
+	Menu        []Menu `json:"menu,omitempty"`
 }
