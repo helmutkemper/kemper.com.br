@@ -4,7 +4,7 @@ import (
 	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
 )
 
-func (e *SQLiteMenu) Get(menuId int) (menu []dataFormat.Menu, err error) {
+func (e *SQLiteMenu) Get(menuId int) (menu []dataFormat.Menu, length int, err error) {
 	var ref = make([]menuRef, 0)
 
 	menu, err = e.getBySecondaryId(menuId, 0)
@@ -28,6 +28,8 @@ func (e *SQLiteMenu) Get(menuId int) (menu []dataFormat.Menu, err error) {
 			break
 		}
 	}
+
+	length = len(menu)
 
 	return
 }
