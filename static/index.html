@@ -754,81 +754,22 @@ editor.readOnly = false
 
         }).data("kendoNotification");
 
+      var dataSource = new kendo.data.HierarchicalDataSource({
+        transport: {
+          read: {
+            url: "/datasource/menu",
+            dataType: "json"
+          }
+        },
+        schema: { data: 'data' }
+      });
+
         $("#menu").kendoMenu(
-            {
-                select: onMenuSelect,
-                dataSource: [
-                    {
-                        text: "Kemper.com.br",
-                        spriteCssClass: "menuWith fas fa-code-branch",
-                        items: [
-                            {
-                                text: "Sobre mim",
-                                dataSpriteCssClassField: "k-test-menu",
-                                spriteCssClass: "menuWith fas fa-info-circle"
-                            },
-                            {
-                                text: "Github",
-                                dataSpriteCssClassField: "k-test-menu",
-                                spriteCssClass: "menuWith fab fa-github",
-                                url: "https://github.com/helmutkemper"
-                            },
-                            {
-                                text: "LinkedIn",
-                                spriteCssClass: "menuWith fab fa-linkedin",
-                                url: "https://www.linkedin.com/in/helmut-kemper-93a5441b/"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Códigos",
-                        spriteCssClass: "menuWith fas fa-code",
-                        items: [
-                            {
-                                text: "Conversando com o dev",
-                                spriteCssClass: "menuWith fas fa-fire-extinguisher",
-                                items: [
-                                    {
-                                        text: "Conversando com o dev",
-                                        imageUrl: "../content/shared/icons/16/star.png"
-                                    },
-                                    {
-                                        text: "Sérgio Desenvolvedor",
-                                        imageUrl: "../content/shared/icons/16/photo.png"
-                                    }
-                                ]
-                            },
-                            {
-                                text: "Sérgio Desenvolvedor",
-                                spriteCssClass: "menuWith fas fa-fire",
-                                items: [
-                                    {
-                                        text: "Hello World"
-                                    },
-                                    {
-                                        text: "Sérgio Desenvolvedor"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        text: "Admin",
-                        spriteCssClass: "menuWith fas fa-cogs",
-                        items: [
-                            {
-                                text: "Login"
-                            },
-                            {
-                                text: "New content"
-                            }
-                        ]
-                    },
-                    {
-                        text: "Doação",
-                        spriteCssClass: "menuWith fas fa-donate"
-                    }
-                ]}
+          {
+            select: onMenuSelect,
+            dataSource: dataSource,
+            dataTextField: "text",
+          }
         );
 
         var myWindow = $("#window");

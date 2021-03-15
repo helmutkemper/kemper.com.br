@@ -17,7 +17,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		return
 	}
 
-	err = e.SetMenu(1, 0, "Donation", 0, "", "", 3)
+	err = e.SetMenu(1, 0, "Donation", 0, "fas fa-donate", "", 3)
 	if err != nil {
 		return
 	}
@@ -27,7 +27,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		return
 	}
 
-	err = e.SetMenu(1, 1, "Github", 0, "fas fa-info-circle", "https://github.com/helmutkemper", 1)
+	err = e.SetMenu(1, 1, "Github", 0, "fab fa-github", "https://github.com/helmutkemper", 1)
 	if err != nil {
 		return
 	}
