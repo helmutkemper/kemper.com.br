@@ -1,9 +1,5 @@
 package SQLiteMenu
 
-import (
-	"os"
-)
-
 func (e *SQLiteMenu) Install() (err error) {
 	var installed = false
 
@@ -40,6 +36,6 @@ func (e *SQLiteMenu) Install() (err error) {
 			return
 		}
 	}
-	os.Exit(0)
+
 	return
 }
