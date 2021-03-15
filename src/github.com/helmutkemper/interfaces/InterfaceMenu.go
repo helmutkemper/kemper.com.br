@@ -9,5 +9,6 @@ type InterfaceMenu interface {
 	Close() (err error)
 	Get(menuId int) (menu []dataFormat.Menu, length int, err error)
 	Install() (err error)
-	SetMenu(idMenu, idSecondary int, text string, admin int, icon, url string, order int) (err error)
+	SetMenu(idMenu, idSecondary, typeContent int, text string, admin int, icon, url string, order int) (err error)
+	SetMenuList(menu string, admin int) (err error)
 }

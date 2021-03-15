@@ -1,16 +1,45 @@
 package SQLiteMenu
 
+import (
+	"os"
+)
+
 func (e *SQLiteMenu) Install() (err error) {
-	err = e.truncate()
+	var installed = false
+
+	installed, err = e.verifyInstallMenuList()
 	if err != nil {
 		return
 	}
 
-	err = e.createTable()
+	if installed == false {
+		err = e.createTableMenuList()
+		if err != nil {
+			return
+		}
+
+		err = e.populateInitialMenuList()
+		if err != nil {
+			return
+		}
+	}
+
+	installed, err = e.verifyInstallMenu()
 	if err != nil {
 		return
 	}
 
-	err = e.populateInitialMenu()
+	if installed == false {
+		err = e.createTableMenu()
+		if err != nil {
+			return
+		}
+
+		err = e.populateInitialMenu()
+		if err != nil {
+			return
+		}
+	}
+	os.Exit(0)
 	return
 }

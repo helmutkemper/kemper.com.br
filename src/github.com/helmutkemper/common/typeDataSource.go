@@ -25,6 +25,17 @@ func (e *DataSource) Init(name dataSourceName) (err error) {
 		if err != nil {
 			return
 		}
+
+		menu := SQLiteMenu.SQLiteMenu{}
+		err = menu.Connect("./db/database.sqlite")
+		if err != nil {
+			return
+		}
+
+		err = menu.Install()
+		if err != nil {
+			return
+		}
 	}
 
 	return

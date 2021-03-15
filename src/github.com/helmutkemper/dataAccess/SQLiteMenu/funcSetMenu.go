@@ -4,15 +4,15 @@ import (
 	"database/sql"
 )
 
-func (e *SQLiteMenu) SetMenu(idMenu, idSecondary int, text string, admin int, icon, url string, order int) (err error) {
+func (e *SQLiteMenu) SetMenu(idMenu, idSecondary, typeContent int, text string, admin int, icon, url string, order int) (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(
-		`INSERT INTO main.menu (secondaryId, menuId, text, admin, icon, url, itemOrder) VALUES(?, ?, ?, ?, ?, ?, ?)`,
+		`INSERT INTO main.menu (secondaryId, typeContent, menuId, text, admin, icon, url, itemOrder) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
 	)
 	if err != nil {
 		return
 	}
 
-	_, err = statement.Exec(idSecondary, idMenu, text, admin, icon, url, order)
+	_, err = statement.Exec(idSecondary, typeContent, idMenu, text, admin, icon, url, order)
 	return
 }

@@ -27,6 +27,9 @@ func (e *MenuDataSource) Menu(c *gin.Context) {
 	if err != nil {
 		e.Meta.Success = false
 		e.Meta.Error = []string{err.Error()}
+		e.Object = []int{}
+		c.JSON(200, e)
+		return
 	}
 
 	var m = viewDataSource.Menu{}
@@ -37,9 +40,5 @@ func (e *MenuDataSource) Menu(c *gin.Context) {
 	e.Meta.Success = true
 	e.Object = m
 
-	//b, _ := json.Marshal(&e.Object)
 	c.JSON(200, e)
-	//c.Writer.Write([]byte("callback("))
-	//c.Writer.Write(b)
-	//c.Writer.Write([]byte(")"))
 }

@@ -21,14 +21,9 @@ func ExampleSQLiteMenu_Get() {
 		log.Fatalf("sqlMenu.Connect().error: %v", err.Error())
 	}
 
-	err = sqlMenu.createTable()
+	err = sqlMenu.Install()
 	if err != nil {
 		log.Fatalf("sqlMenu.createTable().error: %v", err.Error())
-	}
-
-	err = sqlMenu.populateInitialMenu()
-	if err != nil {
-		log.Fatalf("sqlMenu.populateInitialMenu().error: %v", err.Error())
 	}
 
 	menu, length, err = sqlMenu.Get(1)
