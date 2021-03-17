@@ -4,6 +4,7 @@ import (
 	"database/sql"
 )
 
+//createTableMenu (Português): Cria a tabela do menu
 func (e *SQLiteMenu) createTableMenu() (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(`

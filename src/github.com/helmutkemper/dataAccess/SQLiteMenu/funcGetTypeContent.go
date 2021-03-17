@@ -5,6 +5,8 @@ import (
 	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
 )
 
+// getTypeContent (Português): Retorna todos os elementos do menu que podem receber conteúdo, em formato datasource.
+// Nota: O menu foi pensado para haver dois tipos elemento, 0: recebe outro item de menu. 1: recebe conteúdo clicável.
 func (e *SQLiteMenu) getTypeContent(menuId int) (menu []dataFormat.Menu, err error) {
 	var rows *sql.Rows
 

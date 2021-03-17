@@ -4,6 +4,8 @@ import (
 	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
 )
 
+// getReference (Português): Gera ponteiros para todos os submenus, permitindo a navegação durante o prenchimento de
+// dados.
 func (e *SQLiteMenu) getReference(menuId int, ref *[]menuRef) (err error) {
 	var menu []dataFormat.Menu
 

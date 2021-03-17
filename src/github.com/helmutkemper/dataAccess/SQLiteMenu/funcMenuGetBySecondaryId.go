@@ -5,6 +5,7 @@ import (
 	"github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/dataFormat"
 )
 
+// getBySecondaryId (Português): ajuda a montar o menu, navegando do nível mais externo para o mais interno.
 func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId int) (menu []dataFormat.Menu, err error) {
 	var rows *sql.Rows
 

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 )
 
+// truncate (Português):
 func (e *SQLiteMenu) truncate() (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(

@@ -1,5 +1,6 @@
 package SQLiteMenu
 
+// populateInitialMenu (Português): popula o menu com os primeiros dados após a instalação.
 func (e *SQLiteMenu) populateInitialMenu() (err error) {
 
 	err = e.SetMenu(1, 0, 0, "Kemper.com.br", 0, "fas fa-code-branch", "", 0)

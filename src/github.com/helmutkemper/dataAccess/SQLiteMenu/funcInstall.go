@@ -1,5 +1,6 @@
 package SQLiteMenu
 
+// Install (Português): Instala o menu e popula os primeiros dados.
 func (e *SQLiteMenu) Install() (err error) {
 	var installed = false
 

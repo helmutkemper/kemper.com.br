@@ -23,17 +23,11 @@ func main() {
 	r.GET("/saveTimeLine", saveTimeLine)
 	r.GET("/datasource/menu", menu.Menu)
 
-	r.GET("/install", install)
-
 	log.Println("Listening on :3000...")
 	err = r.Run(":3000")
 	if err != nil {
 		log.Panic(err)
 	}
-
-}
-
-func install(c *gin.Context) {
 
 }
 

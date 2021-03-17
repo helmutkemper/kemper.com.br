@@ -15,6 +15,7 @@ type MenuDataSource struct {
 
 const kMainMenuID = 1
 
+// Menu: (Português): Endpoint menu para o datasource do componente Kendo UI JQuery Menu
 func (e *MenuDataSource) Menu(c *gin.Context) {
 	var err error
 	var menuData []dataFormat.Menu

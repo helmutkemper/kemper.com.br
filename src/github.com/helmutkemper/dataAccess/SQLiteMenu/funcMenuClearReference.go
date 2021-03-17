@@ -1,5 +1,6 @@
 package SQLiteMenu
 
+// clearReference (Português): remove os ponteiros da lista de menu, para menus já populados.
 func (e *SQLiteMenu) clearReference(ref *[]menuRef) {
 	if ref == nil {
 		return

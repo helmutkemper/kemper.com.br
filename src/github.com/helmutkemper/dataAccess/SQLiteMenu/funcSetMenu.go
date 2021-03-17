@@ -4,6 +4,7 @@ import (
 	"database/sql"
 )
 
+// SetMenu (Português): Adiciona um novo ítem ao menu
 func (e *SQLiteMenu) SetMenu(idMenu, idSecondary, typeContent int, text string, admin int, icon, url string, order int) (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(

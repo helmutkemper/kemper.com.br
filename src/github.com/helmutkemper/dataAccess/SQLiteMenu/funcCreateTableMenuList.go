@@ -4,6 +4,7 @@ import (
 	"database/sql"
 )
 
+//createTableMenuList (Português): Cria a tabela com todos os menus caso o site tenha múltiplos usuários
 func (e *SQLiteMenu) createTableMenuList() (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(`
