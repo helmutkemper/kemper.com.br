@@ -1,8 +1,8 @@
-package sqlite3
+package SQLiteUser
 
 import "database/sql"
 
-func (e *SQLite3) MailExists(mail string) (found bool, err error) {
+func (e *SQLiteUser) MailExists(mail string) (found bool, err error) {
 	var rows *sql.Rows
 	rows, err = e.Database.Query(
 		`
@@ -11,7 +11,7 @@ func (e *SQLite3) MailExists(mail string) (found bool, err error) {
 			FROM 
 				user 
 			WHERE 
-				mail = ?
+				eMail = ?
 		`,
 		mail,
 	)

@@ -2,15 +2,14 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/main.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLite3/funcGetPassword.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLite3/funcUserCreate.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLite3/typeSQLite3.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcCreateTableMenu.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcCreateTableMenuList.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcMenuGetBySecondaryId.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcPopulateInitialMenu.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcSetMenu.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcSet.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcTruncate.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteUser/funcGetPassword.go" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>
 </project>

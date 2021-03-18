@@ -1,10 +1,10 @@
-package sqlite3
+package SQLiteUser
 
 import (
 	"database/sql"
 )
 
-func (e *SQLite3) GetPassword(mail string) (password string, err error) {
+func (e *SQLiteUser) GetPassword(mail string) (password string, err error) {
 	var rows *sql.Rows
 	rows, err = e.Database.Query(`
 		SELECT 

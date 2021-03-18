@@ -13,6 +13,8 @@ import (
 func main() {
 	var err error
 
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 	menu := endpoint.MenuDataSource{}
 
 	r := gin.Default()
