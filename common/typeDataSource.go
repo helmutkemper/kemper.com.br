@@ -3,6 +3,7 @@ package common
 import (
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu"
+	"github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteUser"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
 	"log"
 )
@@ -34,8 +35,24 @@ func (e *DataSource) Init(name dataSourceName) (err error) {
 		if err != nil {
 			return
 		}
+
+		err = e.initUser()
+		if err != nil {
+			return
+		}
 	}
 
+	return
+}
+
+func (e *DataSource) initUser() (err error) {
+	user := SQLiteUser.SQLiteUser{}
+	err = user.Connect("./db/database.sqlite")
+	if err != nil {
+		return
+	}
+
+	err = user.Install()
 	return
 }
 

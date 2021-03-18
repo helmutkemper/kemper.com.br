@@ -14,6 +14,6 @@ func (e *SQLiteUser) Set(idMenu, admin int, name, nickName, eMail, password stri
 		return
 	}
 
-	_, err = statement.Exec(idMenu, admin, idMenu, name, nickName, eMail, password)
+	_, err = statement.Exec(idMenu, admin, name, nickName, eMail, password)
 	return
 }
