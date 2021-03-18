@@ -1,7 +1,7 @@
 # kemper.com.br
 GOROOT=/Users/kemper/go/go1.16 #gosetup
 GOPATH=/Users/kemper/go/Libraries:/Users/kemper/go/projetos/kemper.com.br #gosetup
-/Users/kemper/go/go1.16/bin/go test -c -o /private/var/folders/85/c_g4_d35425d5039h6tm3y040000gn/T/___ExampleSQLiteMenu_GetMenu_in_github_com_helmutkemper_kemper_com_br_src_github_com_helmutkemper_dataAccess_SQLite3 github.com/helmutkemper/kemper.com.br/src/github.com/helmutkemper/dataAccess/SQLite3 #gosetup
+/Users/kemper/go/go1.16/bin/go test -c -o /private/var/folders/85/c_g4_d35425d5039h6tm3y040000gn/T/___ExampleSQLiteMenu_GetMenu_in_github_com_helmutkemper_kemper_com_br_src_github_com_helmutkemper_dataAccess_SQLite3 github.com/helmutkemper/kemper.com.br/dataAccess/SQLite3 #gosetup
 /Users/kemper/go/go1.16/bin/go tool test2json -t /private/var/folders/85/c_g4_d35425d5039h6tm3y040000gn/T/___ExampleSQLiteMenu_GetMenu_in_github_com_helmutkemper_kemper_com_br_src_github_com_helmutkemper_dataAccess_SQLite3 -test.v -test.paniconexit0 -test.run ^\QExampleSQLiteMenu_GetMenu\E$
 === RUN   ExampleSQLiteMenu_GetMenu
 --- FAIL: ExampleSQLiteMenu_GetMenu (0.00s)

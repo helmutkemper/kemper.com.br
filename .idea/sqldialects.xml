@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLite3/typeSQLite3.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcCreateTableMenu.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcCreateTableMenuList.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcMenuGetBySecondaryId.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcPopulateInitialMenu.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcSet.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteMenu/funcTruncate.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Libraries/src/github.com/helmutkemper/kemper.com.br/dataAccess/SQLiteUser/funcGetPassword.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/main.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLite3/typeSQLite3.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcCreateTableMenu.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcCreateTableMenuList.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcMenuGetBySecondaryId.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcPopulateInitialMenu.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcSet.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteMenu/funcTruncate.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/src/github.com/helmutkemper/dataAccess/SQLiteUser/funcGetPassword.go" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>
 </project>
