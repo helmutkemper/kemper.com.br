@@ -2,9 +2,9 @@ package endpoint
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/helmutkemper/kemper.com.br/common"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
+	"github.com/helmutkemper/kemper.com.br/rules"
 	"github.com/helmutkemper/kemper.com.br/viewDataSource"
 )
 
@@ -21,7 +21,7 @@ func (e *MenuDataSource) Menu(c *gin.Context) {
 	var menuData []dataFormat.Menu
 	var length int
 
-	e.DataSource = common.DataSourceCommon.GetMenu()
+	e.DataSource = rules.DataSourceCommon.GetMenu()
 	menuData, length, err = e.DataSource.Get(kMainMenuID)
 
 	e.Meta.Error = []string{}
