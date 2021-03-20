@@ -3,11 +3,10 @@ package SQLiteUser
 import (
 	"database/sql"
 	"errors"
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 )
 
 // Get (Português): Retorna o menu escolhido dentro do formato do datasource
-func (e *SQLiteUser) Get(mail string) (user dataFormat.User, err error) {
+func (e *SQLiteUser) Get(mail string) (user User, err error) {
 	var rows *sql.Rows
 	rows, err = e.Database.Query(
 		`

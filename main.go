@@ -3,19 +3,30 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/helmutkemper/kemper.com.br/endpoint"
+	"github.com/helmutkemper/kemper.com.br/gin/endpoint"
+	"github.com/helmutkemper/kemper.com.br/rules/system/datasource"
 	_ "github.com/mattn/go-sqlite3"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
+func initSystemRules() (err error) {
+	err = datasource.ReferencesList.Init(datasource.KSQLite)
+	return
+}
+
 func main() {
 	var err error
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	menu := endpoint.MenuDataSource{}
+	err = initSystemRules()
+	if err != nil {
+		log.Fatalf("System datasource initialization error: %v", err.Error())
+	}
+
+	var endpoint = endpoint.MenuDataSource{}
 
 	r := gin.Default()
 	r.StaticFS("/static", http.Dir("./static"))
@@ -23,7 +34,7 @@ func main() {
 		c.File("local/file.go")
 	})
 	r.GET("/saveTimeLine", saveTimeLine)
-	r.GET("/datasource/menu", menu.Menu)
+	r.GET("/datasource/menu", endpoint.Menu)
 
 	log.Println("Listening on :3000...")
 	err = r.Run(":3000")

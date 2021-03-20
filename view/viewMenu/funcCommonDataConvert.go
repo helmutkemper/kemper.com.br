@@ -1,4 +1,4 @@
-package viewDataSource
+package viewMenu
 
 import (
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
@@ -101,7 +101,7 @@ func (e *Menu) getRefs(menuFromDataSource *[]dataFormat.Menu, menuToPopulate *[]
 	return
 }
 
-func (e *Menu) CommonDataConvert(menuFromDataSource *[]dataFormat.Menu) {
+func (e *Menu) Parser(menuFromDataSource *[]dataFormat.Menu) {
 	menuToPopulate := make([]Item, 0)
 
 	refs := e.getRefs(menuFromDataSource, &menuToPopulate)

@@ -2,10 +2,9 @@ package endpoint
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	"github.com/helmutkemper/kemper.com.br/businessRules/menu"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
-	"github.com/helmutkemper/kemper.com.br/rules"
-	"github.com/helmutkemper/kemper.com.br/viewDataSource"
+	"github.com/helmutkemper/kemper.com.br/view/viewMenu"
 )
 
 type MenuDataSource struct {
@@ -13,16 +12,14 @@ type MenuDataSource struct {
 	DataSource interfaces.InterfaceMenu `json:"-"`
 }
 
-const kMainMenuID = 1
-
 // Menu: (Português): Endpoint menu para o datasource do componente Kendo UI JQuery Menu
 func (e *MenuDataSource) Menu(c *gin.Context) {
 	var err error
-	var menuData []dataFormat.Menu
+	var menuData viewMenu.Menu
 	var length int
 
-	e.DataSource = rules.DataSourceCommon.GetMenu()
-	menuData, length, err = e.DataSource.Get(kMainMenuID)
+	menuBusinessRules := menu.BusinessRules{}
+	length, menuData, err = menuBusinessRules.Get(1)
 
 	e.Meta.Error = []string{}
 	if err != nil {
@@ -33,13 +30,10 @@ func (e *MenuDataSource) Menu(c *gin.Context) {
 		return
 	}
 
-	var m = viewDataSource.Menu{}
-	m.CommonDataConvert(&menuData)
-
 	e.Meta.Total = length
 	e.Meta.Actual = length
 	e.Meta.Success = true
-	e.Object = m
+	e.Object = menuData
 
 	c.JSON(200, e)
 }

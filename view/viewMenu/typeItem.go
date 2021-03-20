@@ -1,4 +1,4 @@
-package viewDataSource
+package viewMenu
 
 type Item struct {
 	Text                    string `json:"text,omitempty"`
