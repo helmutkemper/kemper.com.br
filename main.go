@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("System datasource initialization error: %v", err.Error())
 	}
 
-	var endpoint = endpoint.MenuDataSource{}
+	var ginEndpoint = endpoint.MenuDataSource{}
 
 	r := gin.Default()
 	r.StaticFS("/static", http.Dir("./static"))
@@ -34,14 +34,13 @@ func main() {
 		c.File("local/file.go")
 	})
 	r.GET("/saveTimeLine", saveTimeLine)
-	r.GET("/datasource/menu", endpoint.Menu)
+	r.GET("/datasource/menu", ginEndpoint.Menu)
 
 	log.Println("Listening on :3000...")
 	err = r.Run(":3000")
 	if err != nil {
 		log.Panic(err)
 	}
-
 }
 
 func saveTimeLine(c *gin.Context) {
