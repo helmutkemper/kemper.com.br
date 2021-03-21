@@ -1,4 +1,4 @@
-package password
+package passwordHash
 
 import "golang.org/x/crypto/bcrypt"
 

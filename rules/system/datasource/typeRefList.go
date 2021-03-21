@@ -7,4 +7,5 @@ import (
 // RefList (Português): Recebe todos os ponteiros de datasource
 type RefList struct {
 	Menu interfaces.InterfaceMenu
+	User interfaces.InterfaceUser
 }

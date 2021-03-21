@@ -12,7 +12,7 @@ func (e *SQLiteUser) GetPassword(mail string) (password string, err error) {
 		FROM 
 		     user 
 		WHERE 
-		      mail = ?`,
+		      eMail = ?`,
 		mail,
 	)
 	if err != nil {

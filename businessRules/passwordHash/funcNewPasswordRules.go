@@ -1,4 +1,4 @@
-package password
+package passwordHash
 
 func (e *Password) NewPasswordRules(password []byte) (err error) {
 	err = e.ruleLength(password)

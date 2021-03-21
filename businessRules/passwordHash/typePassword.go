@@ -1,3 +1,3 @@
-package password
+package passwordHash
 
 type Password struct{}

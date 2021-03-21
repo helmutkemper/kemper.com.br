@@ -8,7 +8,7 @@
     <file url="file://$PROJECT_DIR$/dataAccess/SQLiteMenu/funcPopulateInitialMenu.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/dataAccess/SQLiteMenu/funcSet.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/dataAccess/SQLiteMenu/funcTruncate.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/dataAccess/SQLiteUser/funcGetPassword.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/dataAccess/SQLiteUser/_funcGetPassword.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/main.go" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>

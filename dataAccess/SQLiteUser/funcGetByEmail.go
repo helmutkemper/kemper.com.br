@@ -3,10 +3,11 @@ package SQLiteUser
 import (
 	"database/sql"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 )
 
-// Get (Português): Retorna o menu escolhido dentro do formato do datasource
-func (e *SQLiteUser) Get(mail string) (user User, err error) {
+// GetByEmail (Português): Retorna o menu escolhido dentro do formato do datasource
+func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 	var rows *sql.Rows
 	rows, err = e.Database.Query(
 		`
@@ -42,11 +43,13 @@ func (e *SQLiteUser) Get(mail string) (user User, err error) {
 			return
 		}
 
-		err = user.Set(id, menuId, admin, name, nickName, mail, password)
-		if err != nil {
-			return
-		}
-
+		user.Id = id
+		user.MenuId = menuId
+		user.Admin = admin
+		user.Name = name
+		user.NickName = nickName
+		user.Mail = mail
+		user.Password = password
 	} else {
 		err = errors.New("user not found")
 	}

@@ -5,6 +5,6 @@ import (
 )
 
 // GetMenu (Português): Retorna o datasource do menu
-func (e *RefList) GetMenu() (datasource interfaces.InterfaceMenu) {
+func (e *RefList) GetReferenceFromMenu() (datasource interfaces.InterfaceMenu) {
 	return e.Menu
 }
