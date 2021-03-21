@@ -1,7 +1,7 @@
 package datasource
 
 import (
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLiteMenu"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
 )
 
 // initSQLite (Português): Inicializa o SQLite

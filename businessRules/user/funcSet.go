@@ -3,7 +3,7 @@ package user
 import (
 	"encoding/base64"
 	"errors"
-	systemDatasource "github.com/helmutkemper/kemper.com.br/rules/system/datasource"
+	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
 )
 
 func (e *BusinessRules) Set(idMenu, admin int, name, nickName, mail, password string) (err error) {

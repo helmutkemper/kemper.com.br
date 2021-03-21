@@ -2,8 +2,8 @@ package user
 
 import (
 	"errors"
+	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
-	systemDatasource "github.com/helmutkemper/kemper.com.br/rules/system/datasource"
 )
 
 func (e *BusinessRules) getPasswordByEmail(mail string) (password string, err error) {

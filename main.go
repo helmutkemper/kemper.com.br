@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
 	"github.com/helmutkemper/kemper.com.br/gin/server"
-	"github.com/helmutkemper/kemper.com.br/rules/system/datasource"
 	_ "github.com/mattn/go-sqlite3"
 	"io/ioutil"
 	"log"
