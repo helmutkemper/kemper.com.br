@@ -1,6 +1,6 @@
 package passwordHash
 
-func (e *Password) NewPasswordRules(password []byte) (err error) {
+func (e *Password) newPasswordRules(password []byte) (err error) {
 	err = e.ruleLength(password)
 	if err != nil {
 		return

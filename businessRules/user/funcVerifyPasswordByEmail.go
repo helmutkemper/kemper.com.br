@@ -2,13 +2,23 @@ package user
 
 import (
 	"encoding/base64"
-	"github.com/helmutkemper/kemper.com.br/businessRules/passwordHash"
+	"errors"
 )
 
 func (e *BusinessRules) VerifyPasswordByEmail(mail, password string) (match bool, err error) {
-	var pass = passwordHash.Password{}
 	var hash []byte
 	var passwordFromDatasource string
+	var matched bool
+
+	matched, err = e.verifyMailSyntax(mail)
+	if err != nil {
+		return
+	}
+
+	if matched == false {
+		err = errors.New("e-mail must be a valid sintax")
+		return
+	}
 
 	passwordFromDatasource, err = e.getPasswordByEmail(mail)
 	if err != nil {
@@ -20,6 +30,6 @@ func (e *BusinessRules) VerifyPasswordByEmail(mail, password string) (match bool
 		return
 	}
 
-	match = pass.CheckHash([]byte(password), hash)
+	match = e.Password.CheckHash([]byte(password), hash)
 	return
 }

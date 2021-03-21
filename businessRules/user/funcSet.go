@@ -2,23 +2,33 @@ package user
 
 import (
 	"encoding/base64"
-	"github.com/helmutkemper/kemper.com.br/businessRules/passwordHash"
+	"errors"
 	systemDatasource "github.com/helmutkemper/kemper.com.br/rules/system/datasource"
 )
 
-func (e *BusinessRules) Set(idMenu, admin int, name, nickName, eMail, password string) (err error) {
-	var pass = passwordHash.Password{}
+func (e *BusinessRules) Set(idMenu, admin int, name, nickName, mail, password string) (err error) {
 	var hash, hash64 []byte
+	var matched bool
+
+	matched, err = e.verifyMailSyntax(mail)
+	if err != nil {
+		return
+	}
+
+	if matched == false {
+		err = errors.New("e-mail must be a valid sintax")
+		return
+	}
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromUser()
 
-	hash, err = pass.MakeHash([]byte(password))
+	hash, err = e.Password.MakeHash([]byte(password))
 	if err != nil {
 		return
 	}
 
 	base64.StdEncoding.Encode(hash64, hash)
 
-	err = e.DataSource.Set(idMenu, admin, name, nickName, eMail, string(hash64))
+	err = e.DataSource.Set(idMenu, admin, name, nickName, mail, string(hash64))
 	return
 }

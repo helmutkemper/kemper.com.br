@@ -11,7 +11,7 @@ import (
 )
 
 func initSystemRules() (err error) {
-	err = datasource.ReferencesList.Init(datasource.KSQLite)
+	err = datasource.Linker.Init(datasource.KSQLite)
 	return
 }
 
