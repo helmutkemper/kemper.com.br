@@ -8,7 +8,7 @@ func (e *SQLiteUser) populateInitialUser() (err error) {
 		1,
 		"Helmut Kemper",
 		"Kemper",
-		"helmut.kempert@gmail.com",
+		"helmut.kemper@gmail.com",
 		"admin",
 	)
 	return

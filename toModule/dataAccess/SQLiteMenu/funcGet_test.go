@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
 	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"os"
@@ -15,15 +16,15 @@ func ExampleSQLiteMenu_Get() {
 	var menuAsByte []byte
 	var length int
 
-	sqlMenu := SQLiteMenu{}
-	err = sqlMenu.Connect(kTestDatabaseName)
+	var sqlMenu = SQLiteMenu{}
+	err = sqlMenu.Connect(consts.KTestDatabaseName)
 	if err != nil {
 		log.Fatalf("sqlMenu.Connect().error: %v", err.Error())
 	}
 
 	err = sqlMenu.Install()
 	if err != nil {
-		log.Fatalf("sqlMenu.createTable().error: %v", err.Error())
+		log.Fatalf("sqlMenu.Install().error: %v", err.Error())
 	}
 
 	menu, length, err = sqlMenu.Get(1)
@@ -42,7 +43,7 @@ func ExampleSQLiteMenu_Get() {
 
 	fmt.Printf("%s", menuAsByte)
 
-	err = os.Remove(kTestDatabaseName)
+	err = os.Remove(consts.KTestDatabaseName)
 	if err != nil {
 		log.Fatalf("os.Remove().error: %v", err.Error())
 	}

@@ -7,7 +7,7 @@ import (
 
 // getTypeContent (Português): Retorna todos os elementos do menu que podem receber conteúdo, em formato datasource.
 // Nota: O menu foi pensado para haver dois tipos elemento, 0: recebe outro item de menu. 1: recebe conteúdo clicável.
-func (e *SQLiteMenu) getTypeContent(menuId int) (menu []dataFormat.Menu, err error) {
+func (e *SQLiteMenu) _getTypeContent(menuId int) (menu []dataFormat.Menu, err error) {
 	var rows *sql.Rows
 
 	var id int

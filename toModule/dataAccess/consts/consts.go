@@ -1,6 +1,6 @@
-package SQLiteMenu
+package consts
 
 const (
 	//kTestDatabaseName (Português): Caminho e nome do arquivo de dados do SQLite criado para os testes
-	kTestDatabaseName = "./database.sqlite"
+	KTestDatabaseName = "./database.sqlite"
 )
