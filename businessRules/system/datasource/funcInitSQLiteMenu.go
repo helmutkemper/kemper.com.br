@@ -6,13 +6,13 @@ import (
 )
 
 // InitMenu (Português): Inicializa o datasource do menu
-func (e *RefList) initMenu() (err error) {
-	menu := SQLiteMenu.SQLiteMenu{}
-	err = menu.Connect(consts.KDatabaseName)
+func (e *RefList) initSQLiteMenu() (err error) {
+	e.Menu = &SQLiteMenu.SQLiteMenu{}
+	err = e.Menu.Connect(consts.KDatabaseName)
 	if err != nil {
 		return
 	}
 
-	err = menu.Install()
+	err = e.Menu.Install()
 	return
 }

@@ -13,7 +13,7 @@ func (e *Password) ruleOneSpecialChars(password []byte) (err error) {
 		[]byte(";"), []byte(":"), []byte("\""), []byte("'"), []byte("<"), []byte(">"), []byte(","), []byte("."),
 		[]byte("/"), []byte("?")}
 	for _, char = range specialChars {
-		if bytes.Contains(char, password) {
+		if bytes.Contains(password, char) {
 			return
 		}
 	}

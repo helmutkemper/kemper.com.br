@@ -12,7 +12,7 @@ func (e *Password) ruleLowerCase(password []byte) (err error) {
 		[]byte("o"), []byte("p"), []byte("q"), []byte("r"), []byte("s"), []byte("t"), []byte("v"), []byte("w"),
 		[]byte("x"), []byte("y"), []byte("z")}
 	for _, char = range specialChars {
-		if bytes.Contains(char, password) {
+		if bytes.Contains(password, char) {
 			return
 		}
 	}

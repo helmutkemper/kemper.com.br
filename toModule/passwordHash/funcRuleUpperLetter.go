@@ -12,7 +12,7 @@ func (e *Password) ruleUpperLetter(password []byte) (err error) {
 		[]byte("O"), []byte("P"), []byte("Q"), []byte("R"), []byte("S"), []byte("T"), []byte("V"), []byte("W"),
 		[]byte("X"), []byte("Y"), []byte("Z")}
 	for _, char = range specialChars {
-		if bytes.Contains(char, password) {
+		if bytes.Contains(password, char) {
 			return
 		}
 	}

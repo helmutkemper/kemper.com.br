@@ -16,17 +16,12 @@ func (e *RefList) Init(name Name) (err error) {
 
 	switch name {
 	case KSQLite:
-		err = e.initSQLite()
+		err = e.initSQLiteMenu()
 		if err != nil {
 			return
 		}
 
-		err = e.initMenu()
-		if err != nil {
-			return
-		}
-
-		err = e.initUser()
+		err = e.initSQLiteUser()
 		if err != nil {
 			return
 		}
