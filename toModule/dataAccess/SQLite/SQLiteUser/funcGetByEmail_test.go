@@ -15,7 +15,7 @@ func ExampleSQLiteUser_GetByEmail() {
 	var userAsByte []byte
 
 	var sqlUser = SQLiteUser{}
-	err = sqlUser.Connect(consts.KTestDatabaseName)
+	err = sqlUser.Connect(consts.KDatabaseName)
 	if err != nil {
 		log.Fatalf("sqlUser.Connect().error: %v", err.Error())
 	}
@@ -47,7 +47,7 @@ func ExampleSQLiteUser_GetByEmail() {
 
 	fmt.Printf("%s", userAsByte)
 
-	err = os.Remove(consts.KTestDatabaseName)
+	err = os.Remove(consts.KDatabaseName)
 	if err != nil {
 		log.Fatalf("os.Remove().error: %v", err.Error())
 	}

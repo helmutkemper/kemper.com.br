@@ -28,7 +28,7 @@ func (e *BusinessRules) GetByEmail(mail string) (length int, user viewUser.User,
 		return
 	}
 
-	if user.Mail != "" {
+	if userFromDatasource.Mail != "" {
 		length = 1
 	}
 

@@ -6,4 +6,5 @@ import (
 
 func (e *User) Parser(user *dataFormat.User) {
 	*e = User(*user)
+	e.Password = ""
 }

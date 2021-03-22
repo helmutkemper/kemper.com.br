@@ -17,7 +17,7 @@ func ExampleSQLiteMenu_Get() {
 	var length int
 
 	var sqlMenu = SQLiteMenu{}
-	err = sqlMenu.Connect(consts.KTestDatabaseName)
+	err = sqlMenu.Connect(consts.KDatabaseName)
 	if err != nil {
 		log.Fatalf("sqlMenu.Connect().error: %v", err.Error())
 	}
@@ -43,7 +43,7 @@ func ExampleSQLiteMenu_Get() {
 
 	fmt.Printf("%s", menuAsByte)
 
-	err = os.Remove(consts.KTestDatabaseName)
+	err = os.Remove(consts.KDatabaseName)
 	if err != nil {
 		log.Fatalf("os.Remove().error: %v", err.Error())
 	}
