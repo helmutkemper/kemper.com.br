@@ -3,6 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
+	"log"
 )
 
 func (e *Password) ruleUpperLetter(password []byte) (err error) {
@@ -18,5 +19,6 @@ func (e *Password) ruleUpperLetter(password []byte) (err error) {
 	}
 
 	err = errors.New("the password must be one upper case char")
+	log.Printf("passwordHash.ruleUpperLetter().error: %v", err.Error())
 	return
 }

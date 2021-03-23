@@ -1,4 +1,4 @@
-package endpoint
+package restful
 
 type Restful struct {
 	Meta   Metadata    `json:"meta"`

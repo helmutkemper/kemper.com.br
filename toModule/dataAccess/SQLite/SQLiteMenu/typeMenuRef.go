@@ -5,7 +5,7 @@ import (
 )
 
 type menuRef struct {
-	id   int
+	id   string
 	ref  *[]dataFormat.Menu
 	pass bool
 }

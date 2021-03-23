@@ -2,6 +2,7 @@ package SQLiteUser
 
 import (
 	"database/sql"
+	"log"
 )
 
 //createTableMenu (Português): Cria a tabela do menu
@@ -10,8 +11,8 @@ func (e *SQLiteUser) createTableUser() (err error) {
 	statement, err = e.Database.Prepare(`
 		CREATE TABLE IF NOT EXISTS
     	user (
-				id INTEGER PRIMARY KEY AUTOINCREMENT,
-				menuId INTEGER,        -- id menu list
+				id TEXT PRIMARY KEY,
+				menuId TEXT,        -- id menu list
 				admin INTEGER,         -- 0: normal user; 1 admin user
 				name TEXT,						 -- complete name
 				nickName TEXT,				 -- nick name
@@ -22,10 +23,13 @@ func (e *SQLiteUser) createTableUser() (err error) {
 		`,
 	)
 	if err != nil {
+		log.Printf("SQLiteUser.createTableUser().error: %v", err.Error())
 		return
 	}
 
 	_, err = statement.Exec()
-
+	if err != nil {
+		log.Printf("SQLiteUser.createTableUser().error: %v", err.Error())
+	}
 	return
 }

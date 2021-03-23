@@ -3,6 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
+	"log"
 )
 
 func (e *Password) ruleOneSpecialChars(password []byte) (err error) {
@@ -19,5 +20,6 @@ func (e *Password) ruleOneSpecialChars(password []byte) (err error) {
 	}
 
 	err = errors.New("the password must be one special char")
+	log.Printf("passwordHash.ruleOneSpecialChars().error: %v", err.Error())
 	return
 }

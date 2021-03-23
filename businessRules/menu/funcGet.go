@@ -7,7 +7,7 @@ import (
 )
 
 // Menu: (Português): Get menu para o datasource do componente Kendo UI JQuery Menu
-func (e *BusinessRules) Get(mainMenuId int) (length int, menu viewMenu.Menu, err error) {
+func (e *BusinessRules) Get(mainMenuId string) (length int, menu viewMenu.Menu, err error) {
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()

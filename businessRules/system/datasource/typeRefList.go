@@ -6,7 +6,8 @@ import (
 
 // RefList (Português): Recebe todos os ponteiros de datasource
 type RefList struct {
-	Menu     interfaces.InterfaceMenu
-	User     interfaces.InterfaceUser
-	Password interfaces.InterfacePassword
+	Menu     interfaces.InterfaceMenu     `json:"-"`
+	User     interfaces.InterfaceUser     `json:"-"`
+	Password interfaces.InterfacePassword `json:"-"`
+	UniqueID interfaces.InterfaceUID      `json:"-"`
 }

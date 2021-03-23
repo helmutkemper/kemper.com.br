@@ -39,7 +39,7 @@ func ExampleBusinessRules_Get() {
 		log.Fatalf("ds.Connect().error: %v", err.Error())
 	}
 
-	length, menu, err = rules.Get(1)
+	length, menu, err = rules.Get("5996b891-9d3c-4038-af37-cb07f5f0f72d")
 	if err != nil {
 		log.Fatalf("rules.Get().error: %v", err.Error())
 	}

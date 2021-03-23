@@ -3,6 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
+	"log"
 )
 
 func (e *Password) ruleLowerCase(password []byte) (err error) {
@@ -18,5 +19,6 @@ func (e *Password) ruleLowerCase(password []byte) (err error) {
 	}
 
 	err = errors.New("the password must be one lower case char")
+	log.Printf("passwordHash.ruleLowerCase().error: %v", err.Error())
 	return
 }

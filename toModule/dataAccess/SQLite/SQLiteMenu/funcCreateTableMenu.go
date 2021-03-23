@@ -10,9 +10,9 @@ func (e *SQLiteMenu) createTableMenu() (err error) {
 	statement, err = e.Database.Prepare(`
 		CREATE TABLE IF NOT EXISTS
     	menu (
-				id INTEGER PRIMARY KEY AUTOINCREMENT,
-				menuId INTEGER,        -- id menu list
-				secondaryId INTEGER,   -- id of parent menu
+				id TEXT PRIMARY KEY,
+				menuId TEXT,        -- id menu list
+				secondaryId TEXT,   -- id of parent menu
 				typeContent INTEGER,   -- 0: menu; 1 content
 				text TEXT,             -- menu text
 				admin INTEGER,         -- 0: normal user; 1 admin user

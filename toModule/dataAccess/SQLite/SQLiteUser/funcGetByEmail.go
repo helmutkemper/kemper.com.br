@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	"log"
 )
 
 // GetByEmail (Português): Retorna o menu escolhido dentro do formato do datasource
@@ -27,11 +28,12 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 		mail,
 	)
 	if err != nil {
+		log.Printf("SQLiteUser.GetByEmail().error: %v", err.Error())
 		return
 	}
 
-	var id int
-	var menuId int
+	var id string
+	var menuId string
 	var admin int
 	var name string
 	var nickName string
@@ -40,6 +42,7 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 	if rows.Next() {
 		err = rows.Scan(&id, &menuId, &admin, &name, &nickName, &mail, &password)
 		if err != nil {
+			log.Printf("SQLiteUser.GetByEmail().error: %v", err.Error())
 			return
 		}
 
@@ -52,6 +55,7 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 		user.Password = password
 	} else {
 		err = errors.New("user not found")
+		log.Printf("SQLiteUser.GetByEmail().error: %v", err.Error())
 	}
 
 	return

@@ -6,4 +6,5 @@ import (
 
 type BusinessRules struct {
 	DataSource interfaces.InterfaceMenu `json:"-"`
+	UniqueID   interfaces.InterfaceUID  `json:"-"`
 }

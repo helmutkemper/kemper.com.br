@@ -3,15 +3,16 @@ package SQLiteMenu
 import (
 	"database/sql"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	"log"
 )
 
 // getBySecondaryId (Português): ajuda a montar o menu, navegando do nível mais externo para o mais interno.
-func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId int) (menu []dataFormat.Menu, err error) {
+func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFormat.Menu, err error) {
 	var rows *sql.Rows
 
-	var id int
-	var idMenu int
-	var idSecondary int
+	var id string
+	var idMenu string
+	var idSecondary string
 	var text string
 	var admin int
 	var icon string
@@ -42,12 +43,14 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId int) (menu []dataForma
 		secondaryId,
 	)
 	if err != nil {
+		log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
 		return
 	}
 
 	for rows.Next() {
 		err = rows.Scan(&id, &idMenu, &idSecondary, &text, &admin, &icon, &url, &itemOrder)
 		if err != nil {
+			log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
 			return
 		}
 

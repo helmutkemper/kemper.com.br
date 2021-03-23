@@ -1,6 +1,9 @@
 package SQLiteUser
 
-import "database/sql"
+import (
+	"database/sql"
+	"log"
+)
 
 func (e *SQLiteUser) MailExists(mail string) (found bool, err error) {
 	var rows *sql.Rows
@@ -16,6 +19,7 @@ func (e *SQLiteUser) MailExists(mail string) (found bool, err error) {
 		mail,
 	)
 	if err != nil {
+		log.Printf("SQLiteUser.MailExists().error: %v", err.Error())
 		return
 	}
 

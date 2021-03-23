@@ -5,10 +5,10 @@ import (
 )
 
 // Get (Português): Retorna o menu escolhido dentro do formato do datasource
-func (e *SQLiteMenu) Get(menuId int) (menu []dataFormat.Menu, length int, err error) {
+func (e *SQLiteMenu) Get(menuId string) (menu []dataFormat.Menu, length int, err error) {
 	var ref = make([]menuRef, 0)
 
-	menu, err = e.getBySecondaryId(menuId, 0)
+	menu, err = e.getBySecondaryId(menuId, "")
 	if err != nil {
 		return
 	}

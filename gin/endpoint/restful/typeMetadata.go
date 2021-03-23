@@ -1,4 +1,4 @@
-package endpoint
+package restful
 
 type Metadata struct {
 	Success  bool     `json:"success"`

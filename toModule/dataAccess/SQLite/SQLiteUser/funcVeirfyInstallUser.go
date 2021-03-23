@@ -2,6 +2,7 @@ package SQLiteUser
 
 import (
 	"database/sql"
+	"log"
 )
 
 func (e *SQLiteUser) verifyInstallUser() (installed bool, err error) {
@@ -20,6 +21,7 @@ func (e *SQLiteUser) verifyInstallUser() (installed bool, err error) {
 		"user",
 	)
 	if err != nil {
+		log.Printf("SQLiteUser.verifyInstallUser().error: %v", err.Error())
 		return
 	}
 
@@ -27,6 +29,7 @@ func (e *SQLiteUser) verifyInstallUser() (installed bool, err error) {
 	for rows.Next() {
 		err = rows.Scan(&count)
 		if err != nil {
+			log.Printf("SQLiteUser.verifyInstallUser().error: %v", err.Error())
 			return
 		}
 	}

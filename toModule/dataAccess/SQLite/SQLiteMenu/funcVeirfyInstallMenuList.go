@@ -2,6 +2,7 @@ package SQLiteMenu
 
 import (
 	"database/sql"
+	"log"
 )
 
 func (e *SQLiteMenu) verifyInstallMenuList() (installed bool, err error) {
@@ -20,6 +21,7 @@ func (e *SQLiteMenu) verifyInstallMenuList() (installed bool, err error) {
 		"menuList",
 	)
 	if err != nil {
+		log.Printf("SQLiteMenu.verifyInstallMenuList().error: %v", err.Error())
 		return
 	}
 
@@ -27,6 +29,7 @@ func (e *SQLiteMenu) verifyInstallMenuList() (installed bool, err error) {
 	for rows.Next() {
 		err = rows.Scan(&count)
 		if err != nil {
+			log.Printf("SQLiteMenu.verifyInstallMenuList().error: %v", err.Error())
 			return
 		}
 	}

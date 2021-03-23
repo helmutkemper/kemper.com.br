@@ -3,6 +3,7 @@ package user
 import (
 	"encoding/base64"
 	"errors"
+	"log"
 )
 
 func (e *BusinessRules) VerifyPasswordByEmail(mail, password string) (match bool, err error) {
@@ -12,21 +13,25 @@ func (e *BusinessRules) VerifyPasswordByEmail(mail, password string) (match bool
 
 	matched, err = e.verifyMailSyntax(mail)
 	if err != nil {
+		log.Printf("user.VerifyPasswordByEmail().error: %v", err.Error())
 		return
 	}
 
 	if matched == false {
 		err = errors.New("e-mail must be a valid sintax")
+		log.Printf("user.VerifyPasswordByEmail().error: %v", err.Error())
 		return
 	}
 
 	passwordFromDatasource, err = e.getPasswordByEmail(mail)
 	if err != nil {
+		log.Printf("user.VerifyPasswordByEmail().error: %v", err.Error())
 		return
 	}
 
-	_, err = base64.StdEncoding.Decode([]byte(passwordFromDatasource), hash)
+	hash, err = base64.StdEncoding.WithPadding(base64.StdPadding).DecodeString(passwordFromDatasource)
 	if err != nil {
+		log.Printf("user.VerifyPasswordByEmail().error: %v", err.Error())
 		return
 	}
 

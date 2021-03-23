@@ -5,19 +5,20 @@ import (
 )
 
 type User struct {
-	Id       int
-	MenuId   int
-	Admin    int
-	Name     string
-	NickName string
-	Mail     string
-	Password string
+	Id       string `json:"id"`
+	MenuId   string `json:"menuId"`
+	Admin    int    `json:"admin"`
+	Name     string `json:"name"`
+	NickName string `json:"nickname"`
+	Mail     string `json:"email"`
+	Password string `json:"-"`
 }
 
+//fixme:arquivo
 func (e *User) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
-		Id       int    `json:"id"`
-		MenuId   int    `json:"manuId"`
+		Id       string `json:"id"`
+		MenuId   string `json:"manuId"`
 		Admin    int    `json:"admin"`
 		Name     string `json:"name"`
 		NickName string `json:"nickname"`
