@@ -37,7 +37,7 @@ func ExampleBusinessRules_VerifyPasswordByEmail() {
 		log.Fatalf("ds.Connect().error: %v", err.Error())
 	}
 
-	err = rules.Set(1, 1, "admin", "admin", "admin@admin.com", "@dminAdminAdmin")
+	err = rules.Set("", 1, "admin", "admin", "admin@admin.com", "@dminAdminAdmin")
 	if err != nil {
 		log.Fatalf("rules.Set().error: %v", err.Error())
 	}

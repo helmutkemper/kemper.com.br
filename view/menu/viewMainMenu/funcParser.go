@@ -1,9 +1,10 @@
-package viewMenu
+package viewMainMenu
 
 import (
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 )
 
+// Parser (Português): Transforma o menu do datasource para o tipo Menu
 func (e *Menu) Parser(menuFromDataSource *[]dataFormat.Menu) {
 	menuToPopulate := make([]Item, 0)
 

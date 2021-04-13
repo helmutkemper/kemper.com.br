@@ -3,11 +3,11 @@ package menu
 import (
 	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
-	"github.com/helmutkemper/kemper.com.br/view/viewMenu"
+	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
 )
 
-// Menu: (Português): Get menu para o datasource do componente Kendo UI JQuery Menu
-func (e *BusinessRules) Get(mainMenuId string) (length int, menu viewMenu.Menu, err error) {
+// GetMainMenu (Português): Retorna o menu principal
+func (e *BusinessRules) GetMainMenu(mainMenuId string) (length int, menu viewMainMenu.Menu, err error) {
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()
@@ -16,7 +16,7 @@ func (e *BusinessRules) Get(mainMenuId string) (length int, menu viewMenu.Menu, 
 		return
 	}
 
-	menu = viewMenu.Menu{}
+	menu = viewMainMenu.Menu{}
 	menu.Parser(&menuFromDatasource)
 
 	return
