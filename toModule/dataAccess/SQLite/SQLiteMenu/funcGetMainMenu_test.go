@@ -3,6 +3,7 @@ package SQLiteMenu
 import (
 	"encoding/json"
 	"fmt"
+	consts2 "github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
 	_ "github.com/mattn/go-sqlite3"
@@ -27,7 +28,7 @@ func ExampleSQLiteMenu_GetMainMenu() {
 		log.Fatalf("sqlMenu.Install().error: %v", err.Error())
 	}
 
-	menu, length, err = sqlMenu.GetMainMenu("5996b891-9d3c-4038-af37-cb07f5f0f72d")
+	menu, length, err = sqlMenu.GetMenuMain(consts2.KMainMenuID)
 	if err != nil {
 		log.Fatalf("sqlMenu.GetMainMenu().error: %v", err.Error())
 	}

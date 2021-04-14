@@ -3,6 +3,7 @@ package menu
 import (
 	"fmt"
 	"github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
+	consts2 "github.com/helmutkemper/kemper.com.br/constants"
 	dsMenu "github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
 	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
@@ -39,7 +40,7 @@ func ExampleBusinessRules_GetMainMenu() {
 		log.Fatalf("ds.Connect().error: %v", err.Error())
 	}
 
-	length, menu, err = rules.GetMainMenu("5996b891-9d3c-4038-af37-cb07f5f0f72d")
+	length, menu, err = rules.GetMainMenu(consts2.KMainMenuID)
 	if err != nil {
 		log.Fatalf("rules.GetMainMenu().error: %v", err.Error())
 	}

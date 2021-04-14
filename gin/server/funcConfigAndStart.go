@@ -17,7 +17,8 @@ func ConfigAndStart() (err error) {
 	r.GET("/local/file", func(c *gin.Context) {
 		c.File("local/file.go")
 	})
-	r.GET("/datasource/menu", epMenu.Menu)
+	r.GET("/datasource/menu", epMenu.MenuMain)
+	r.GET("/datasource/menuClassRoom", epMenu.MenuGetListClassRoom)
 	r.GET("/datasource/user/:mail", epUser.Menu)
 
 	log.Println("Listening on :3000...")

@@ -6,8 +6,7 @@ import (
 	"log"
 )
 
-// getBySecondaryId (Português): ajuda a montar o menu, navegando do nível mais externo para o mais interno.
-func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFormat.Menu, err error) {
+func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.Menu, length int, err error) {
 	var rows *sql.Rows
 
 	var id string
@@ -36,11 +35,10 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 		     menu
 		WHERE
 		      	menuId = ?
-				AND secondaryId = ?
+				AND classroom = 1
 		ORDER BY
 		         itemOrder`,
 		menuId,
-		secondaryId,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
@@ -70,5 +68,6 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 		)
 	}
 
+	length = len(menu)
 	return
 }

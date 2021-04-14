@@ -8,7 +8,7 @@
     <file url="file://$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteMenu/funcCreateTableMenuList.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteMenu/funcMenuGetBySecondaryId.go" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteMenu/funcPopulateInitialMenu.go" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteMenu/funcSet.go" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteMenu/funcSetMainMenu.go" dialect="SQLite" />
     <file url="PROJECT" dialect="SQLite" />
   </component>
 </project>

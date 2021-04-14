@@ -4,8 +4,8 @@ import (
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 )
 
-// GetMainMenu (Português): Retorna o menu escolhido dentro do formato do datasource
-func (e *SQLiteMenu) GetMainMenu(menuId string) (menu []dataFormat.Menu, length int, err error) {
+// GetMenuMain (Português): Retorna o menu escolhido dentro do formato do datasource
+func (e *SQLiteMenu) GetMenuMain(menuId string) (menu []dataFormat.Menu, length int, err error) {
 	var ref = make([]menuRef, 0)
 
 	menu, err = e.getBySecondaryId(menuId, "")

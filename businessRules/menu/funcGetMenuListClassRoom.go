@@ -6,12 +6,11 @@ import (
 	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
 )
 
-// GetMainMenu (Português): Retorna o menu principal
-func (e *BusinessRules) GetMainMenu(mainMenuId string) (length int, menu viewMainMenu.Menu, err error) {
+func (e *BusinessRules) GetMenuListClassRoom(mainMenuId string) (length int, menu viewMainMenu.Menu, err error) {
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()
-	menuFromDatasource, length, err = e.DataSource.GetMainMenu(mainMenuId)
+	menuFromDatasource, length, err = e.DataSource.GetClassroomByMainMenuId(mainMenuId)
 	if err != nil {
 		return
 	}
