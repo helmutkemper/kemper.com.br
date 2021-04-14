@@ -13,8 +13,7 @@ type DataSource struct {
 	DataSource interfaces.InterfaceUser `json:"-"`
 }
 
-// Menu: (Português): Endpoint menu para o datasource do componente Kendo UI JQuery Menu
-func (e *DataSource) Menu(c *gin.Context) {
+func (e *DataSource) UserByEmail(c *gin.Context) {
 	var err error
 	var userData viewUser.User
 	var length int
