@@ -3,6 +3,7 @@ package user
 import (
 	"encoding/base64"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
@@ -18,7 +19,7 @@ func (e *BusinessRules) VerifyPasswordByEmail(mail, password string) (match bool
 	}
 
 	if matched == false {
-		err = errors.New("e-mail must be a valid sintax")
+		err = errors.New(constants.KErrorEmailValidSintax)
 		log.Printf("user.VerifyPasswordByEmail().error: %v", err.Error())
 		return
 	}

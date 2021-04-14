@@ -3,6 +3,7 @@ package SQLiteUser
 import (
 	"database/sql"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"log"
 )
@@ -54,7 +55,7 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 		user.Mail = mail
 		user.Password = password
 	} else {
-		err = errors.New("user not found")
+		err = errors.New(constants.KErrorUserNotFound)
 		log.Printf("SQLiteUser.GetByEmail().error: %v", err.Error())
 	}
 

@@ -3,6 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
@@ -19,7 +20,7 @@ func (e *Password) ruleOneSpecialChars(password []byte) (err error) {
 		}
 	}
 
-	err = errors.New("the password must be one special char")
+	err = errors.New(constants.KErrorPasswordOneSpecialChar)
 	log.Printf("passwordHash.ruleOneSpecialChars().error: %v", err.Error())
 	return
 }

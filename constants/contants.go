@@ -87,3 +87,13 @@ const (
 	KMainUserMail     = "helmut.kemper@gmail.com"
 	KMainUserPassword = "admin"
 )
+
+const (
+	KErrorInicializeDataSourceFirst    = "please, inicialize data source first"
+	KErrorPasswordOneSpecialChar       = "the password must be one special char"
+	KErrorPasswordOneLowerCaseChar     = "the password must be one lower case char"
+	KErrorPasswordMustBe8LettersOrMore = "the password must be 8 letters or more"
+	KErrorUserNotFound                 = "user not found"
+	KErrorLanguageTableEmpty           = "language table is empty"
+	KErrorEmailValidSintax             = "e-mail must be a valid sintax"
+)

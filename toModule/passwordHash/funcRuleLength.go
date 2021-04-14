@@ -2,12 +2,13 @@ package passwordHash
 
 import (
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
 func (e *Password) ruleLength(password []byte) (err error) {
 	if len(password) < 8 {
-		err = errors.New("the password must be 8 letters or more")
+		err = errors.New(constants.KErrorPasswordMustBe8LettersOrMore)
 		log.Printf("passwordHash.ruleLength().error: %v", err.Error())
 	}
 

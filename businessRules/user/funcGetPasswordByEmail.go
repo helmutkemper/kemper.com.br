@@ -3,6 +3,7 @@ package user
 import (
 	"errors"
 	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"log"
 )
@@ -18,7 +19,7 @@ func (e *BusinessRules) getPasswordByEmail(mail string) (password string, err er
 	}
 
 	if matched == false {
-		err = errors.New("e-mail must be a valid sintax")
+		err = errors.New(constants.KErrorEmailValidSintax)
 		log.Printf("user.getPasswordByEmail().error: %v", err.Error())
 		return
 	}

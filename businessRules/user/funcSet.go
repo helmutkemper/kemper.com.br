@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"errors"
 	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
@@ -18,7 +19,7 @@ func (e *BusinessRules) Set(idMenu string, admin int, name, nickName, mail, pass
 	}
 
 	if matched == false {
-		err = errors.New("e-mail must be a valid sintax")
+		err = errors.New(constants.KErrorEmailValidSintax)
 		log.Printf("user.SetMainMenu().error: %v", err.Error())
 		return
 	}

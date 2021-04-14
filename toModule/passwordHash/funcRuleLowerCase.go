@@ -3,6 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
@@ -18,7 +19,7 @@ func (e *Password) ruleLowerCase(password []byte) (err error) {
 		}
 	}
 
-	err = errors.New("the password must be one lower case char")
+	err = errors.New(constants.KErrorPasswordOneLowerCaseChar)
 	log.Printf("passwordHash.ruleLowerCase().error: %v", err.Error())
 	return
 }
