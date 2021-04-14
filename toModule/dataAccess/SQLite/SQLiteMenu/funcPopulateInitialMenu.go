@@ -77,7 +77,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"d791c1a2-fc36-454a-a7f4-038149e30e4a",
+		constants.KMainMenuAboutMeID,
 		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
@@ -94,7 +94,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"d40894ba-8015-402f-9c10-5a4836413b1d",
+		constants.KMainMenuGithubID,
 		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
@@ -111,7 +111,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"873da901-8285-4846-85df-59f16850429e",
+		constants.KMainMenuLinkedinID,
 		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
@@ -128,16 +128,16 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"207b66f1-eef9-4572-a57d-5152b511e37d",
+		constants.KMainMenuTalkingWithDevID,
 		constants.KMainMenuID,
 		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
-		"Conversando com o sênior",
+		constants.KMainMenuTalkingWithDevText,
 		constants.KmainMenuUserNormal,
-		"fas fa-fire-extinguisher",
-		"",
-		0,
+		constants.KMainMenuTalkingWithDevIcon,
+		constants.KMainMenuTalkingWithDevURL,
+		constants.KMainMenuTalkingWithDevOrder,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
@@ -145,16 +145,16 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"ae116cdf-1941-4ca7-9129-0bad2793ca42",
+		constants.KMainMenuMigratingToGoID,
 		constants.KMainMenuID,
 		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
-		"Migrando para o Go",
+		constants.KMainMenuMigratingToGoText,
 		constants.KmainMenuUserNormal,
-		"fas fa-fire",
-		"",
-		1,
+		constants.KMainMenuMigratingToGoIcon,
+		constants.KMainMenuMigratingToGoURL,
+		constants.KMainMenuMigratingToGoOrder,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
@@ -162,16 +162,16 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"08c7e064-8225-4ee4-9cf4-19dcdd546c84",
+		constants.KMainMenuLoginID,
 		constants.KMainMenuID,
 		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
-		"Login",
+		constants.KMainMenuLoginText,
 		constants.KmainMenuUserAdmin,
-		"",
-		"",
-		1,
+		constants.KMainMenuLoginIcon,
+		constants.KMainMenuLoginURL,
+		constants.KMainMenuLoginOrder,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
@@ -179,16 +179,16 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"24fda64b-0af2-4da6-9d95-38664614d3bd",
+		constants.KMainMenuNewContentID,
 		constants.KMainMenuID,
 		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
-		"New content",
+		constants.KMainMenuNewContentText,
 		constants.KmainMenuUserAdmin,
-		"",
-		"",
-		0,
+		constants.KMainMenuNewContentIcon,
+		constants.KMainMenuNewContentURL,
+		constants.KMainMenuNewContentOrder,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
