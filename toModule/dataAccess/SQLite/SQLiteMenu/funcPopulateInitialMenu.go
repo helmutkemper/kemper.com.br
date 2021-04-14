@@ -26,7 +26,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"0409921a-600b-49db-b8cc-d906e3837082",
+		constants.KMainMenuCodeID,
 		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
@@ -43,7 +43,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"1726ce36-7338-4932-858b-6863700dbe51",
+		constants.KMainMenuAdminID,
 		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
@@ -60,7 +60,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	}
 
 	err = e.SetMainMenu(
-		"d6667be4-6794-4c6f-9eb2-0d3cac1d7801",
+		constants.KMainMenuDonationID,
 		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
@@ -130,7 +130,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	err = e.SetMainMenu(
 		"207b66f1-eef9-4572-a57d-5152b511e37d",
 		constants.KMainMenuID,
-		"0409921a-600b-49db-b8cc-d906e3837082",
+		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
 		"Conversando com o sênior",
@@ -147,7 +147,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	err = e.SetMainMenu(
 		"ae116cdf-1941-4ca7-9129-0bad2793ca42",
 		constants.KMainMenuID,
-		"0409921a-600b-49db-b8cc-d906e3837082",
+		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
 		"Migrando para o Go",
@@ -164,7 +164,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	err = e.SetMainMenu(
 		"08c7e064-8225-4ee4-9cf4-19dcdd546c84",
 		constants.KMainMenuID,
-		"1726ce36-7338-4932-858b-6863700dbe51",
+		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
 		"Login",
@@ -181,7 +181,7 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 	err = e.SetMainMenu(
 		"24fda64b-0af2-4da6-9d95-38664614d3bd",
 		constants.KMainMenuID,
-		"1726ce36-7338-4932-858b-6863700dbe51",
+		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
 		"New content",

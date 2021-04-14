@@ -33,16 +33,19 @@ const (
 	KMainMenuLinkedinURL   = "https://www.linkedin.com/in/helmut-kemper-93a5441b/"
 	KMainMenuLinkedinOrder = 2
 
+	KMainMenuCodeID    = "0409921a-600b-49db-b8cc-d906e3837082"
 	KMainMenuCodeText  = "Códigos"
 	KMainMenuCodeIcon  = "fas fa-code"
 	KMainMenuCodeURL   = ""
 	KMainMenuCodeOrder = 1
 
+	KMainMenuAdminID    = "1726ce36-7338-4932-858b-6863700dbe51"
 	KMainMenuAdminText  = "Admin"
 	KMainMenuAdminIcon  = "fas fa-cogs"
 	KMainMenuAdminURL   = ""
 	KMainMenuAdminOrder = 2
 
+	KMainMenuDonationID    = "d6667be4-6794-4c6f-9eb2-0d3cac1d7801"
 	KMainMenuDonationText  = "Donation"
 	KMainMenuDonationIcon  = "fas fa-donate"
 	KMainMenuDonationURL   = ""
