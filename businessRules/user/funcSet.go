@@ -13,19 +13,19 @@ func (e *BusinessRules) Set(idMenu string, admin int, name, nickName, mail, pass
 
 	matched, err = e.verifyMailSyntax(mail)
 	if err != nil {
-		log.Printf("user.Set().error: %v", err.Error())
+		log.Printf("user.SetMainMenu().error: %v", err.Error())
 		return
 	}
 
 	if matched == false {
 		err = errors.New("e-mail must be a valid sintax")
-		log.Printf("user.Set().error: %v", err.Error())
+		log.Printf("user.SetMainMenu().error: %v", err.Error())
 		return
 	}
 
 	hash, err = e.Password.MakeHash([]byte(password))
 	if err != nil {
-		log.Printf("user.Set().error: %v", err.Error())
+		log.Printf("user.SetMainMenu().error: %v", err.Error())
 		return
 	}
 

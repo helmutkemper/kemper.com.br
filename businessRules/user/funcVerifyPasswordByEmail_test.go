@@ -39,7 +39,7 @@ func ExampleBusinessRules_VerifyPasswordByEmail() {
 
 	err = rules.Set("", 1, "admin", "admin", "admin@admin.com", "@dminAdminAdmin")
 	if err != nil {
-		log.Fatalf("rules.Set().error: %v", err.Error())
+		log.Fatalf("rules.SetMainMenu().error: %v", err.Error())
 	}
 
 	matched, err = rules.VerifyPasswordByEmail("admin@admin.com", "@dminAdminAdmin")

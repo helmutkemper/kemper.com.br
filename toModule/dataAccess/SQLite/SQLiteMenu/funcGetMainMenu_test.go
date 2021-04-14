@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func ExampleSQLiteMenu_Get() {
+func ExampleSQLiteMenu_GetMainMenu() {
 	var err error
 	var menu []dataFormat.Menu
 	var menuAsByte []byte
@@ -27,13 +27,13 @@ func ExampleSQLiteMenu_Get() {
 		log.Fatalf("sqlMenu.Install().error: %v", err.Error())
 	}
 
-	menu, length, err = sqlMenu.Get("5996b891-9d3c-4038-af37-cb07f5f0f72d")
+	menu, length, err = sqlMenu.GetMainMenu("5996b891-9d3c-4038-af37-cb07f5f0f72d")
 	if err != nil {
-		log.Fatalf("sqlMenu.Get().error: %v", err.Error())
+		log.Fatalf("sqlMenu.GetMainMenu().error: %v", err.Error())
 	}
 
 	if length != 4 {
-		log.Fatalf("sqlMenu.Get()..lenght.error: %v. Must be 4", length)
+		log.Fatalf("sqlMenu.GetMainMenu()..lenght.error: %v. Must be 4", length)
 	}
 
 	menuAsByte, err = json.Marshal(&menu)

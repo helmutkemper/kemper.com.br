@@ -24,7 +24,7 @@ func (e *SQLiteMenu) installMainMenu() (err error) {
 	}
 
 	if installed == false {
-		err = e.createTableMenu()
+		err = e.createTableMainMenu()
 		if err != nil {
 			return
 		}

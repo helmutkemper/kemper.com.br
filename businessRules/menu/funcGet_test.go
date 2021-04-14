@@ -5,15 +5,15 @@ import (
 	"github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
 	dsMenu "github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
-	"github.com/helmutkemper/kemper.com.br/view/viewMenu"
+	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
 	"log"
 	"os"
 )
 
-func ExampleBusinessRules_Get() {
+func ExampleBusinessRules_GetMainMenu() {
 	var err error
 	var length int
-	var menu viewMenu.Menu
+	var menu viewMainMenu.Menu
 
 	var ds = dsMenu.SQLiteMenu{}
 	err = ds.Connect(consts.KDatabaseName)
@@ -39,9 +39,9 @@ func ExampleBusinessRules_Get() {
 		log.Fatalf("ds.Connect().error: %v", err.Error())
 	}
 
-	length, menu, err = rules.Get("5996b891-9d3c-4038-af37-cb07f5f0f72d")
+	length, menu, err = rules.GetMainMenu("5996b891-9d3c-4038-af37-cb07f5f0f72d")
 	if err != nil {
-		log.Fatalf("rules.Get().error: %v", err.Error())
+		log.Fatalf("rules.GetMainMenu().error: %v", err.Error())
 	}
 
 	if length != 4 {

@@ -37,7 +37,7 @@ func ExampleSQLiteUser_GetByEmail() {
 
 	user, err = sqlUser.GetByEmail("helmut.kemper@gmail.com")
 	if err != nil {
-		log.Fatalf("sqlUser.Get().error: %v", err.Error())
+		log.Fatalf("sqlUser.GetMainMenu().error: %v", err.Error())
 	}
 
 	userAsByte, err = json.Marshal(&user)

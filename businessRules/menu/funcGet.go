@@ -11,7 +11,7 @@ func (e *BusinessRules) GetMainMenu(mainMenuId string) (length int, menu viewMai
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()
-	menuFromDatasource, length, err = e.DataSource.Get(mainMenuId)
+	menuFromDatasource, length, err = e.DataSource.GetMainMenu(mainMenuId)
 	if err != nil {
 		return
 	}

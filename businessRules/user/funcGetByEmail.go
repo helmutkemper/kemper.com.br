@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-// Get: (Português):
+// GetMainMenu: (Português):
 func (e *BusinessRules) GetByEmail(mail string) (length int, user viewUser.User, err error) {
 	var userFromDatasource dataFormat.User
 	var matched bool

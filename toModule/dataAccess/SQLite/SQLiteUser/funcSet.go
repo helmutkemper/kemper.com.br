@@ -12,13 +12,13 @@ func (e *SQLiteUser) Set(id, idMenu string, admin int, name, nickName, eMail, pa
 		`INSERT INTO main.user (id, menuId, admin, name, nickName, eMail, password) VALUES(?, ?, ?, ?, ?, ?, ?)`,
 	)
 	if err != nil {
-		log.Printf("SQLiteUser.Set().error: %v", err.Error())
+		log.Printf("SQLiteUser.SetMainMenu().error: %v", err.Error())
 		return
 	}
 
 	_, err = statement.Exec(id, idMenu, admin, name, nickName, eMail, password)
 	if err != nil {
-		log.Printf("SQLiteUser.Set().error: %v", err.Error())
+		log.Printf("SQLiteUser.SetMainMenu().error: %v", err.Error())
 	}
 	return
 }
