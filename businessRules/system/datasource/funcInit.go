@@ -3,14 +3,13 @@ package datasource
 import (
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/constants"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteUser"
 	"github.com/helmutkemper/kemper.com.br/toModule/passwordHash"
 	"github.com/helmutkemper/kemper.com.br/toModule/uID"
 	"log"
 )
-
-//*************************************************************************
-//**                               Cuidado                               **
-//*************************************************************************
 
 // Init (Português): Inicializa o datasource escolhido
 //   name: tyme Name
@@ -27,19 +26,19 @@ func (e *RefList) Init(name Name) (err error) {
 	switch name {
 	case KSQLite:
 
-		err = e.initSQLiteMenu()
+		e.Menu, err = SQLiteMenu.New()
 		if err != nil {
 			log.Printf("datasource.initSQLiteMenu().error: %v", err.Error())
 			return
 		}
 
-		err = e.initSQLiteUser()
+		e.User, err = SQLiteUser.New()
 		if err != nil {
 			log.Printf("datasource.initSQLiteUser().error: %v", err.Error())
 			return
 		}
 
-		err = e.initSQLiteLanguage()
+		e.Language, err = SQLiteLanguage.New()
 		if err != nil {
 			log.Printf("datasource.initSQLiteLanguage().error: %v", err.Error())
 			return

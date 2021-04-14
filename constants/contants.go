@@ -89,6 +89,11 @@ const (
 )
 
 const (
+	KInstallLanguageID   = "f9c71382-40e8-4027-aa7d-b31faacc8111"
+	KInstallLanguageName = "GoLang"
+)
+
+const (
 	KErrorInicializeDataSourceFirst    = "please, inicialize data source first"
 	KErrorPasswordOneSpecialChar       = "the password must be one special char"
 	KErrorPasswordOneLowerCaseChar     = "the password must be one lower case char"

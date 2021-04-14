@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func (e *RefList) initSQLiteLanguage() (err error) {
+func (e *RefList) _initSQLiteLanguage() (err error) {
 	e.Language = &SQLiteLanguage.SQLiteLanguage{}
 	err = e.Language.Connect(consts.KDatabaseName)
 	if err != nil {

@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func (e *RefList) initSQLiteUser() (err error) {
+func (e *RefList) _initSQLiteUser() (err error) {
 	e.User = &SQLiteUser.SQLiteUser{}
 	err = e.User.Connect(consts.KDatabaseName)
 	if err != nil {

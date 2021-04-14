@@ -10,17 +10,12 @@ import (
 	"log"
 )
 
-func initSystemRules() (err error) {
-	err = datasource.Linker.Init(datasource.KSQLite)
-	return
-}
-
 func main() {
 	var err error
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	err = initSystemRules()
+	err = datasource.Linker.Init(datasource.KSQLite)
 	if err != nil {
 		log.Fatalf("System datasource initialization error: %v", err.Error())
 	}
