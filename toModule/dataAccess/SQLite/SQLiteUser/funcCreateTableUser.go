@@ -16,7 +16,7 @@ func (e *SQLiteUser) createTableUser() (err error) {
 				admin INTEGER,         -- 0: normal user; 1 admin user
 				name TEXT,						 -- complete name
 				nickName TEXT,				 -- nick name
-				eMail TEXT,						 -- e-mail
+				email TEXT,						 -- e-mail
 				password TEXT,				 -- password
 				FOREIGN KEY(menuId) REFERENCES menuList(id) ON DELETE restrict ON UPDATE restrict
 			);

@@ -14,7 +14,7 @@ func (e *SQLiteUser) MailExists(mail string) (found bool, err error) {
 			FROM 
 				user 
 			WHERE 
-				eMail = ?
+				email = ?
 		`,
 		mail,
 	)

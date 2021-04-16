@@ -19,12 +19,12 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 				admin,
 				name,
 				nickName,
-				eMail,
+				email,
 				password
 			FROM
 				user
 			WHERE
-				eMail = ?
+				email = ?
 		`,
 		mail,
 	)
