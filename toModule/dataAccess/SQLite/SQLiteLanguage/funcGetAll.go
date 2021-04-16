@@ -4,17 +4,19 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/constants"
+	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"log"
 )
 
-func (e *SQLiteLanguage) GetAll() (languagues []string, lenght int, err error) {
+func (e *SQLiteLanguage) GetAll() (languagues []dataFormat.Languages, lenght int, err error) {
 	var rows *sql.Rows
 
-	languagues = make([]string, 0)
+	languagues = make([]dataFormat.Languages, 0)
 
 	rows, err = e.Database.Query(
 		`
 			SELECT
+			    id,
 				name
 			FROM
 				language
@@ -27,15 +29,22 @@ func (e *SQLiteLanguage) GetAll() (languagues []string, lenght int, err error) {
 		return
 	}
 
+	var id string
 	var name string
 	for rows.Next() {
-		err = rows.Scan(&name)
+		err = rows.Scan(&id, &name)
 		if err != nil {
 			log.Printf("SQLiteLanguage.GetAll().error: %v", err.Error())
 			return
 		}
 
-		languagues = append(languagues, name)
+		languagues = append(
+			languagues,
+			dataFormat.Languages{
+				Id:   id,
+				Name: name,
+			},
+		)
 	}
 
 	lenght = len(languagues)

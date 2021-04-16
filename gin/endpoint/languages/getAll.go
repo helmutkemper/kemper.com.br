@@ -3,6 +3,7 @@ package languages
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/helmutkemper/kemper.com.br/businessRules/languages"
+	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"github.com/helmutkemper/kemper.com.br/gin/endpoint/restful"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
 )
@@ -14,7 +15,7 @@ type DataSource struct {
 
 func (e *DataSource) GetAll(c *gin.Context) {
 	var err error
-	var langList []string
+	var langList []dataFormat.Languages
 	var length int
 
 	menuBusinessRules := languages.BusinessRules{}

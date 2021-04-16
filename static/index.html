@@ -754,7 +754,7 @@ editor.readOnly = false
 
         }).data("kendoNotification");
 
-      var dataSource = new kendo.data.HierarchicalDataSource({
+      let dataSourceMenu = new kendo.data.HierarchicalDataSource({
         transport: {
           read: {
             url: "/datasource/menu",
@@ -767,7 +767,7 @@ editor.readOnly = false
         $("#menu").kendoMenu(
           {
             select: onMenuSelect,
-            dataSource: dataSource,
+            dataSource: dataSourceMenu,
             dataTextField: "text",
           }
         );
@@ -860,50 +860,21 @@ editor.readOnly = false
             ]
         }).data("kendoWindow").center();
 
-        $("#menu-to-place").kendoDropDownTree({
+      let dataSourcemenuClassroom = new kendo.data.HierarchicalDataSource({
+        transport: {
+          read: {
+            url: "/datasource/menuClassRoom",
+            dataType: "json"
+          }
+        },
+        schema: { data: 'data' }
+      });
+      $("#menu-to-place").kendoDropDownTree({
             placeholder: "Select ...",
             filter: "startswith",
             dataTextField: "text",
-            dataValueField: "value",
-            dataSource: [
-                {
-                    text: "Furniture",
-                    value: "",
-                    expanded: true,
-                    items: [
-                        {
-                            text:  "Tables & Chairs",
-                            value: "Tables & Chairs"
-                        },
-                        {
-                            text:  "Sofas",
-                            value: "Sofas"
-                        },
-                        {
-                            text:  "Occasional Furniture",
-                            value: "Occasional Furniture"
-                        }
-                    ]
-                },
-                {
-                    text: "Decor",
-                    expanded: true,
-                    items: [
-                        {
-                            text:  "Bed Linen",
-                            value: "Bed Linen"
-                        },
-                        {
-                            text:  "Curtains & Blinds",
-                            value: "Curtains & Blinds"
-                        },
-                        {
-                            text:  "Carpets",
-                            value: "Carpets"
-                        }
-                    ]
-                }
-            ],
+            dataValueField: "text",
+            dataSource: dataSourcemenuClassroom,
             change: function(e) {
                 if (typeof this.value() === "object") {
                     notification.show({
@@ -917,25 +888,21 @@ editor.readOnly = false
             }
         });
 
+        let dataSourceLanguages = new kendo.data.HierarchicalDataSource({
+          transport: {
+            read: {
+              url: "/datasource/languages",
+              dataType: "json"
+            }
+          },
+          schema: { data: 'data' }
+        });
         $("#code-language").kendoDropDownTree({
             placeholder: "Select ...",
             filter: "startswith",
-            dataSource: [
-                {
-                    text: "Furniture", expanded: true, items: [
-                        { text: "Tables & Chairs" },
-                        { text: "Sofas" },
-                        { text: "Occasional Furniture" }
-                    ]
-                },
-                {
-                    text: "Decor", items: [
-                        { text: "Bed Linen" },
-                        { text: "Curtains & Blinds" },
-                        { text: "Carpets" }
-                    ]
-                }
-            ]
+            dataSource: dataSourceLanguages,
+            dataTextField: "name",
+            dataValueField: "id"
         });
 
         controlPanelCode.kendoWindow({
