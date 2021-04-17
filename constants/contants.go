@@ -102,3 +102,8 @@ const (
 	KErrorLanguageTableEmpty           = "language table is empty"
 	KErrorEmailValidSintax             = "e-mail must be a valid sintax"
 )
+
+const (
+	KMongoDBDatabase           = "site"
+	KMongoDBCollectionLanguage = "language"
+)

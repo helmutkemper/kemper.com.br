@@ -3,6 +3,7 @@ package datasource
 import (
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/constants"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBLanguage"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteUser"
@@ -41,6 +42,13 @@ func (e *RefList) Init(name Name) (err error) {
 		e.Language, err = SQLiteLanguage.New()
 		if err != nil {
 			log.Printf("datasource.initSQLiteLanguage().error: %v", err.Error())
+			return
+		}
+
+	case KMongoDB:
+		e.Language, err = MongoDBLanguage.New()
+		if err != nil {
+			log.Printf("datasource.MongoDBLanguage.New().error: %v", err.Error())
 			return
 		}
 	}
