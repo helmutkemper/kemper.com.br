@@ -6,7 +6,7 @@ import (
 
 func New() (referenceInicialized *MongoDBLanguage, err error) {
 	referenceInicialized = &MongoDBLanguage{}
-	err = referenceInicialized.Connect("mongodb://127.0.0.1:27017/site")
+	err = referenceInicialized.Connect("mongodb://127.0.0.1:27017/")
 	if err != nil {
 		util.TraceToLog()
 		return

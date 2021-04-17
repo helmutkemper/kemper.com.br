@@ -21,11 +21,11 @@ func TraceToLog() (file string, line int, funcName string, ok bool) {
 	fn := runtime.FuncForPC(pc)
 	if fn == nil {
 		funcName = ""
-		log.Printf("unknownFuncName(%v) - %v", line, file)
+		log.Printf("unknownFuncName()[%v]: %v", line, file)
 		return
 	}
 
 	funcName = fn.Name()
-	log.Printf("%v(%v) - %v", funcName, line, file)
+	log.Printf("%v() - line: %v - %v", funcName, line, file)
 	return
 }

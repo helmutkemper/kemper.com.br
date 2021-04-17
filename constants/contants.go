@@ -106,4 +106,5 @@ const (
 const (
 	KMongoDBDatabase           = "site"
 	KMongoDBCollectionLanguage = "language"
+	KMongoDBCollectionUser     = "user"
 )

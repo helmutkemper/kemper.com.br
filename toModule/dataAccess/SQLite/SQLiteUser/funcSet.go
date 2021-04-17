@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// Set (Português): Adiciona um novo ítem ao menu
+// Set (Português): Adiciona um novo usuário
 func (e *SQLiteUser) Set(id, idMenu string, admin int, name, nickName, email, password string) (err error) {
 	var statement *sql.Stmt
 	statement, err = e.Database.Prepare(

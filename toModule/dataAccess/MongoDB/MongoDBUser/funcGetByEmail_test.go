@@ -1,21 +1,19 @@
-package SQLiteUser
+package MongoDBUser
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
 	"log"
-	"os"
 )
 
-func ExampleSQLiteUser_GetByEmail() {
+func ExampleMongoDBUser_GetByEmail() {
 	var err error
 	var user dataFormat.User
 	var userAsByte []byte
 
-	var sqlUser = SQLiteUser{}
-	err = sqlUser.Connect(consts.KDatabaseName)
+	var sqlUser = MongoDBUser{}
+	err = sqlUser.Connect("mongodb://127.0.0.1:27017/")
 	if err != nil {
 		log.Fatalf("sqlUser.Connect().error: %v", err.Error())
 	}
@@ -46,11 +44,6 @@ func ExampleSQLiteUser_GetByEmail() {
 	}
 
 	fmt.Printf("%s", userAsByte)
-
-	err = os.Remove(consts.KDatabaseName)
-	if err != nil {
-		log.Fatalf("os.Remove().error: %v", err.Error())
-	}
 
 	// Output:
 	// {"id":"24867707-3a21-4368-8058-3d7b1ddb8c06","manuId":"5996b891-9d3c-4038-af37-cb07f5f0f72d","admin":1,"name":"Helmut Kemper","nickname":"Kemper","mail":"helmut.kemper@gmail.com"}

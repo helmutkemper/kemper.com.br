@@ -1,12 +1,11 @@
-package SQLiteUser
+package MongoDBUser
 
 import (
 	"github.com/helmutkemper/kemper.com.br/constants"
-	"log"
+	"github.com/helmutkemper/kemper.com.br/util"
 )
 
-// populateInitialMenu (Português): popula o menu com os primeiros dados após a instalação.
-func (e *SQLiteUser) populateInitialUser() (err error) {
+func (e *MongoDBUser) populateInitialUser() (err error) {
 
 	err = e.Set(
 		constants.KMainUserID,
@@ -18,7 +17,8 @@ func (e *SQLiteUser) populateInitialUser() (err error) {
 		constants.KMainUserPassword,
 	)
 	if err != nil {
-		log.Printf("SQLiteUser.populateInitialUser().error: %v", err.Error())
+		util.TraceToLog()
+		return
 	}
 	return
 }
