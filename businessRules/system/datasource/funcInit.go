@@ -9,6 +9,7 @@ import (
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteUser"
 	"github.com/helmutkemper/kemper.com.br/toModule/passwordHash"
 	"github.com/helmutkemper/kemper.com.br/toModule/uID"
+	"github.com/helmutkemper/kemper.com.br/util"
 	"log"
 )
 
@@ -48,7 +49,7 @@ func (e *RefList) Init(name Name) (err error) {
 	case KMongoDB:
 		e.Language, err = MongoDBLanguage.New()
 		if err != nil {
-			log.Printf("datasource.MongoDBLanguage.New().error: %v", err.Error())
+			util.TraceToLog()
 			return
 		}
 	}

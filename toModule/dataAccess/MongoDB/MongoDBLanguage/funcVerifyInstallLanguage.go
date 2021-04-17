@@ -2,24 +2,28 @@ package MongoDBLanguage
 
 import (
 	"github.com/helmutkemper/kemper.com.br/constants"
+	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	"github.com/helmutkemper/kemper.com.br/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-	"log"
 )
 
 func (e *MongoDBLanguage) verifyInstallLanguage() (installed bool, err error) {
 	var cursor *mongo.Cursor
+	var languagues []dataFormat.Languages
+
 	cursor, err = e.ClientLanguage.Find(e.Ctx, bson.M{"_id": constants.KInstallLanguageID, "name": constants.KInstallLanguageName})
 	if err != nil {
-		log.Printf("e.ClientLanguage.Find().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	var er = cursor.Err()
-	if er != nil {
+	err = cursor.All(e.Ctx, &languagues)
+	if err != nil {
+		util.TraceToLog()
 		return
 	}
 
-	installed = true
+	installed = len(languagues) > 0
 	return
 }
