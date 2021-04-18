@@ -402,7 +402,7 @@ func (e *MongoDBMenu) populateInitialMenu() (err error) {
 
 func New() (referenceInicialized *MongoDBMenu, err error) {
 	referenceInicialized = &MongoDBMenu{}
-	err = referenceInicialized.Connect("mongodb://127.0.0.1:27017/")
+	err = referenceInicialized.Connect(constants.KMongoDBConnectionString)
 	if err != nil {
 		util.TraceToLog()
 		return

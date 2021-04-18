@@ -1,13 +1,13 @@
 package SQLiteMenu
 
 import (
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
 func New() (referenceInicialized *SQLiteMenu, err error) {
 	referenceInicialized = &SQLiteMenu{}
-	err = referenceInicialized.Connect(consts.KDatabaseName)
+	err = referenceInicialized.Connect(constants.KSQLiteConnectionString)
 	if err != nil {
 		log.Printf("SQLiteMenu.New().Connect().error: %v", err.Error())
 		return

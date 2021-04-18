@@ -3,6 +3,7 @@ package MongoDBUser
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"log"
 )
@@ -13,7 +14,7 @@ func ExampleMongoDBUser_GetByEmail() {
 	var userAsByte []byte
 
 	var sqlUser = MongoDBUser{}
-	err = sqlUser.Connect("mongodb://127.0.0.1:27017/")
+	err = sqlUser.Connect(constants.KMongoDBConnectionString)
 	if err != nil {
 		log.Fatalf("sqlUser.Connect().error: %v", err.Error())
 	}

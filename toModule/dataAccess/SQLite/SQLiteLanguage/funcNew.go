@@ -1,13 +1,13 @@
 package SQLiteLanguage
 
 import (
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/consts"
+	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
 func New() (referenceInicialized *SQLiteLanguage, err error) {
 	referenceInicialized = &SQLiteLanguage{}
-	err = referenceInicialized.Connect(consts.KDatabaseName)
+	err = referenceInicialized.Connect(constants.KSQLiteConnectionString)
 	if err != nil {
 		log.Printf("SQLiteLanguage.New().Connect().error: %v", err.Error())
 		return
