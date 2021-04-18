@@ -6,11 +6,10 @@ import (
 	"log"
 )
 
-func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.Menu, length int, err error) {
+func (e *SQLiteMenu) GetClassroomMenuFields() (menu []dataFormat.Menu, length int, err error) {
 	var rows *sql.Rows
 
 	var id string
-	var idMenu string
 	var idSecondary string
 	var text string
 	var admin int
@@ -24,7 +23,6 @@ func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.
 		`
 		SELECT
 		       id,
-		       menuId,
 		       secondaryId,
 		       text,
 		       admin,
@@ -34,11 +32,9 @@ func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.
 		FROM
 		     menu
 		WHERE
-		      	menuId = ?
-				AND classroom = 1
+				classroom = 1
 		ORDER BY
 		         itemOrder`,
-		menuId,
 	)
 	if err != nil {
 		log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
@@ -46,7 +42,7 @@ func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &idMenu, &idSecondary, &text, &admin, &icon, &url, &itemOrder)
+		err = rows.Scan(&id, &idSecondary, &text, &admin, &icon, &url, &itemOrder)
 		if err != nil {
 			log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
 			return
@@ -56,7 +52,6 @@ func (e *SQLiteMenu) GetClassroomByMainMenuId(menuId string) (menu []dataFormat.
 			menu,
 			dataFormat.Menu{
 				Id:          id,
-				IdMenu:      idMenu,
 				IdSecondary: idSecondary,
 				Text:        text,
 				Admin:       admin,

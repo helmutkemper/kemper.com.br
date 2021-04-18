@@ -2,7 +2,6 @@ package constants
 
 // main menu
 const (
-	KMainMenuID                    = "5996b891-9d3c-4038-af37-cb07f5f0f72d"
 	KMainMenuTypeContentAsMenu     = 0
 	KMainMenuTypeContentAsContent  = 1
 	KmainMenuTypeClassRoomAsNormal = 0
@@ -107,4 +106,6 @@ const (
 	KMongoDBDatabase           = "site"
 	KMongoDBCollectionLanguage = "language"
 	KMongoDBCollectionUser     = "user"
+	KMongoDBCollectionMenu     = "menu"
+	KMongoDBCollectionMenuList = "menuList"
 )

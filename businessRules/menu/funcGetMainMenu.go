@@ -7,11 +7,11 @@ import (
 )
 
 // GetMainMenu (Português): Retorna o menu principal
-func (e *BusinessRules) GetMainMenu(mainMenuId string) (length int, menu viewMainMenu.Menu, err error) {
+func (e *BusinessRules) GetMainMenu() (length int, menu viewMainMenu.Menu, err error) {
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()
-	menuFromDatasource, length, err = e.DataSource.GetMenuMain(mainMenuId)
+	menuFromDatasource, length, err = e.DataSource.Get()
 	if err != nil {
 		return
 	}

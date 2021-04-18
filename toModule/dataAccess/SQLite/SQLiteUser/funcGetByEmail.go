@@ -15,7 +15,6 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 		`
 			SELECT
 				id,
-				menuId,
 				admin,
 				name,
 				nickName,
@@ -34,21 +33,19 @@ func (e *SQLiteUser) GetByEmail(mail string) (user dataFormat.User, err error) {
 	}
 
 	var id string
-	var menuId string
 	var admin int
 	var name string
 	var nickName string
 	var password string
 
 	if rows.Next() {
-		err = rows.Scan(&id, &menuId, &admin, &name, &nickName, &mail, &password)
+		err = rows.Scan(&id, &admin, &name, &nickName, &mail, &password)
 		if err != nil {
 			log.Printf("SQLiteUser.GetByEmail().error: %v", err.Error())
 			return
 		}
 
 		user.Id = id
-		user.MenuId = menuId
 		user.Admin = admin
 		user.Name = name
 		user.NickName = nickName

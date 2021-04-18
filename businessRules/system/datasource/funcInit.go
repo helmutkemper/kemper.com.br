@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBLanguage"
+	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBMenu"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBUser"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage"
 	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
@@ -47,6 +48,12 @@ func (e *RefList) Init(name Name) (err error) {
 		}
 
 	case KMongoDB:
+		e.Menu, err = MongoDBMenu.New()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
 		e.User, err = MongoDBUser.New()
 		if err != nil {
 			util.TraceToLog()

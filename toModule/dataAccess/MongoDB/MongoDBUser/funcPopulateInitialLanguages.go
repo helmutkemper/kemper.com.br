@@ -9,7 +9,6 @@ func (e *MongoDBUser) populateInitialUser() (err error) {
 
 	err = e.Set(
 		constants.KMainUserID,
-		constants.KMainMenuID,
 		constants.KmainMenuUserAdmin,
 		constants.KMainUserName,
 		constants.KMainUserNickName,

@@ -12,7 +12,7 @@ func (e *DataSource) MenuGetListClassRoom(c *gin.Context) {
 	var length int
 
 	menuBusinessRules := menu.BusinessRules{}
-	length, menuData, err = menuBusinessRules.GetMenuListClassRoom("5996b891-9d3c-4038-af37-cb07f5f0f72d")
+	length, menuData, err = menuBusinessRules.GetMenuListClassRoom()
 
 	e.Meta.Error = []string{}
 	if err != nil {

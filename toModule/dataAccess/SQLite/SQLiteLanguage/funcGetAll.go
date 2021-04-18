@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func (e *SQLiteLanguage) GetAll() (languagues []dataFormat.Languages, lenght int, err error) {
+func (e *SQLiteLanguage) GetAll() (languagues []dataFormat.Languages, length int, err error) {
 	var rows *sql.Rows
 
 	languagues = make([]dataFormat.Languages, 0)
@@ -47,9 +47,9 @@ func (e *SQLiteLanguage) GetAll() (languagues []dataFormat.Languages, lenght int
 		)
 	}
 
-	lenght = len(languagues)
+	length = len(languagues)
 
-	if lenght == 0 {
+	if length == 0 {
 		err = errors.New(constants.KErrorLanguageTableEmpty)
 		log.Printf("SQLiteLanguage.GetAll().error: %v", err.Error())
 	}

@@ -2,15 +2,14 @@ package SQLiteMenu
 
 import (
 	"github.com/helmutkemper/kemper.com.br/constants"
-	"log"
+	"github.com/helmutkemper/kemper.com.br/util"
 )
 
 // populateInitialMenu (Português): popula o menu com os primeiros dados após a instalação.
 func (e *SQLiteMenu) populateInitialMenu() (err error) {
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuSiteNameID,
-		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -21,13 +20,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuSiteNameOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuCodeID,
-		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -38,13 +36,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuCodeOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuAdminID,
-		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -55,13 +52,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuAdminOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuDonationID,
-		constants.KMainMenuID,
 		"",
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -72,13 +68,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuDonationOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuAboutMeID,
-		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -89,13 +84,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuAboutMeOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuGithubID,
-		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -106,13 +100,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuGithubOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuLinkedinID,
-		constants.KMainMenuID,
 		constants.KMainMenuSiteNameID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -123,13 +116,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuLinkedinOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuTalkingWithDevID,
-		constants.KMainMenuID,
 		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
@@ -140,13 +132,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuTalkingWithDevOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuMigratingToGoID,
-		constants.KMainMenuID,
 		constants.KMainMenuCodeID,
 		constants.KMainMenuTypeContentAsMenu,
 		constants.KmainMenuTypeClassRoomAsClass,
@@ -157,13 +148,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuMigratingToGoOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuLoginID,
-		constants.KMainMenuID,
 		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -174,13 +164,12 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuLoginOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
 		return
 	}
 
-	err = e.SetMainMenu(
+	err = e.Set(
 		constants.KMainMenuNewContentID,
-		constants.KMainMenuID,
 		constants.KMainMenuAdminID,
 		constants.KMainMenuTypeContentAsContent,
 		constants.KmainMenuTypeClassRoomAsNormal,
@@ -191,7 +180,8 @@ func (e *SQLiteMenu) populateInitialMenu() (err error) {
 		constants.KMainMenuNewContentOrder,
 	)
 	if err != nil {
-		log.Printf("SQLiteMenu.populateInitialMenu().error: %v", err.Error())
+		util.TraceToLog()
+		return
 	}
 
 	return

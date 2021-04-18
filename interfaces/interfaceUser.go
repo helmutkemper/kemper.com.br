@@ -9,6 +9,6 @@ type InterfaceUser interface {
 	Close() (err error)
 	Install() (err error)
 	GetByEmail(mail string) (user dataFormat.User, err error)
-	Set(id, idMenu string, admin int, name, nickName, email, password string) (err error)
+	Set(id string, admin int, name, nickName, email, password string) (err error)
 	MailExists(mail string) (found bool, err error)
 }

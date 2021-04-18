@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func (e *MongoDBUser) GetAll() (users []dataFormat.User, lenght int, err error) {
+func (e *MongoDBUser) GetAll() (users []dataFormat.User, length int, err error) {
 	var cursor *mongo.Cursor
 
 	e.ClientUser = e.Client.Database(constants.KMongoDBDatabase).Collection(constants.KMongoDBCollectionUser)
@@ -24,6 +24,6 @@ func (e *MongoDBUser) GetAll() (users []dataFormat.User, lenght int, err error) 
 		return
 	}
 
-	lenght = len(users)
+	length = len(users)
 	return
 }

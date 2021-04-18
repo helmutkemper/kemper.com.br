@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-func (e *MongoDBLanguage) GetAll() (languagues []dataFormat.Languages, lenght int, err error) {
+func (e *MongoDBLanguage) GetAll() (languagues []dataFormat.Languages, length int, err error) {
 	var cursor *mongo.Cursor
 
 	e.ClientLanguage = e.Client.Database(constants.KMongoDBDatabase).Collection(constants.KMongoDBCollectionLanguage)
@@ -24,6 +24,6 @@ func (e *MongoDBLanguage) GetAll() (languagues []dataFormat.Languages, lenght in
 		return
 	}
 
-	lenght = len(languagues)
+	length = len(languagues)
 	return
 }

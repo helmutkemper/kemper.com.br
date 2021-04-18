@@ -3,7 +3,6 @@ package menu
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/helmutkemper/kemper.com.br/businessRules/menu"
-	"github.com/helmutkemper/kemper.com.br/constants"
 	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
 )
 
@@ -14,7 +13,7 @@ func (e *DataSource) MenuMain(c *gin.Context) {
 	var length int
 
 	menuBusinessRules := menu.BusinessRules{}
-	length, menuData, err = menuBusinessRules.GetMainMenu(constants.KMainMenuID)
+	length, menuData, err = menuBusinessRules.GetMainMenu()
 
 	e.Meta.Error = []string{}
 	if err != nil {

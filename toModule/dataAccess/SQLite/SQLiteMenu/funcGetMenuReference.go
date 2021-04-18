@@ -6,7 +6,7 @@ import (
 
 // getReference (Português): Gera ponteiros para todos os submenus, permitindo a navegação durante o prenchimento de
 // dados.
-func (e *SQLiteMenu) getReference(menuId string, ref *[]menuRef) (err error) {
+func (e *SQLiteMenu) getReference(ref *[]menuRef) (err error) {
 	var menu []dataFormat.Menu
 
 	if ref == nil {
@@ -14,7 +14,7 @@ func (e *SQLiteMenu) getReference(menuId string, ref *[]menuRef) (err error) {
 	}
 
 	for refKey := range *ref {
-		menu, err = e.getBySecondaryId(menuId, (*ref)[refKey].id)
+		menu, err = e.getBySecondaryId((*ref)[refKey].id)
 		*(*ref)[refKey].ref = menu
 		(*ref)[refKey].pass = true
 		for menuKey := range menu {

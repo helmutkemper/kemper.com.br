@@ -7,11 +7,10 @@ import (
 )
 
 // getBySecondaryId (Português): ajuda a montar o menu, navegando do nível mais externo para o mais interno.
-func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFormat.Menu, err error) {
+func (e *SQLiteMenu) getBySecondaryId(secondaryId string) (menu []dataFormat.Menu, err error) {
 	var rows *sql.Rows
 
 	var id string
-	var idMenu string
 	var idSecondary string
 	var text string
 	var admin int
@@ -25,7 +24,6 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 		`
 		SELECT
 		       id,
-		       menuId,
 		       secondaryId,
 		       text,
 		       admin,
@@ -35,11 +33,9 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 		FROM
 		     menu
 		WHERE
-		      	menuId = ?
-				AND secondaryId = ?
+				secondaryId = ?
 		ORDER BY
 		         itemOrder`,
-		menuId,
 		secondaryId,
 	)
 	if err != nil {
@@ -48,7 +44,7 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&id, &idMenu, &idSecondary, &text, &admin, &icon, &url, &itemOrder)
+		err = rows.Scan(&id, &idSecondary, &text, &admin, &icon, &url, &itemOrder)
 		if err != nil {
 			log.Printf("SQLiteMenu.getBySecondaryId().error: %v", err.Error())
 			return
@@ -58,7 +54,6 @@ func (e *SQLiteMenu) getBySecondaryId(menuId, secondaryId string) (menu []dataFo
 			menu,
 			dataFormat.Menu{
 				Id:          id,
-				IdMenu:      idMenu,
 				IdSecondary: idSecondary,
 				Text:        text,
 				Admin:       admin,

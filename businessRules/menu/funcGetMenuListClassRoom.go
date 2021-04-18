@@ -6,11 +6,11 @@ import (
 	"github.com/helmutkemper/kemper.com.br/view/menu/viewMainMenu"
 )
 
-func (e *BusinessRules) GetMenuListClassRoom(mainMenuId string) (length int, menu viewMainMenu.Menu, err error) {
+func (e *BusinessRules) GetMenuListClassRoom() (length int, menu viewMainMenu.Menu, err error) {
 	var menuFromDatasource []dataFormat.Menu
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromMenu()
-	menuFromDatasource, length, err = e.DataSource.GetClassroomByMainMenuId(mainMenuId)
+	menuFromDatasource, length, err = e.DataSource.GetClassroomMenuFields()
 	if err != nil {
 		return
 	}

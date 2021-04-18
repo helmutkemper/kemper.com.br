@@ -33,6 +33,6 @@ func (e *BusinessRules) Set(idMenu string, admin int, name, nickName, mail, pass
 	password = base64.StdEncoding.WithPadding(base64.StdPadding).EncodeToString(hash)
 
 	e.DataSource = systemDatasource.Linker.GetReferenceFromUser()
-	err = e.DataSource.Set(e.UniqueID.Get(), idMenu, admin, name, nickName, mail, password)
+	err = e.DataSource.Set(e.UniqueID.Get(), admin, name, nickName, mail, password)
 	return
 }
