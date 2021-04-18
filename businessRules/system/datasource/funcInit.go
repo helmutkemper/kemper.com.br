@@ -65,6 +65,28 @@ func (e *RefList) Init(name Name) (err error) {
 			util.TraceToLog()
 			return
 		}
+
+	case KTotalMadness:
+		//SQLite
+		e.Menu, err = SQLiteMenu.New()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		//MongoDB
+		e.User, err = MongoDBUser.New()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		//SQLite
+		e.Language, err = SQLiteLanguage.New()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
 	}
 
 	return
