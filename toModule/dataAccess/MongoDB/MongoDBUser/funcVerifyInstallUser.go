@@ -10,10 +10,11 @@ import (
 func (e *MongoDBUser) verifyInstallUser() (installed bool, err error) {
 	var cursor *mongo.Cursor
 	var users []dataFormat.User
+	var user = dataFormat.User{Id: constants.KMainUserID, Mail: constants.KMainUserMail}
 
 	e.ClientUser = e.Client.Database(constants.KMongoDBDatabase).Collection(constants.KMongoDBCollectionUser)
 
-	cursor, err = e.ClientUser.Find(e.Ctx, dataFormat.User{Id: constants.KMainUserID, Mail: constants.KMainUserMail})
+	cursor, err = e.ClientUser.Find(e.Ctx, user.GetIdAndMailAsBSonQuery())
 	if err != nil {
 		util.TraceToLog()
 		return

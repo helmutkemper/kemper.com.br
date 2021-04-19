@@ -1,7 +1,6 @@
 package dataFormat
 
 import (
-	"encoding/json"
 	"github.com/helmutkemper/kemper.com.br/util"
 	"go.mongodb.org/mongo-driver/bson"
 	"reflect"
@@ -14,23 +13,6 @@ type User struct {
 	NickName string `json:"nickname"  bson:"nickname"`
 	Mail     string `json:"email" bson:"email"`
 	Password string `json:"-" bson:"password"`
-}
-
-//fixme:arquivo
-func (e *User) MarshalJSON() ([]byte, error) {
-	return json.Marshal(&struct {
-		Id       string `json:"id"`
-		Admin    int    `json:"admin"`
-		Name     string `json:"name"`
-		NickName string `json:"nickname"`
-		Mail     string `json:"mail"`
-	}{
-		Id:       e.Id,
-		Admin:    e.Admin,
-		Name:     e.Name,
-		NickName: e.NickName,
-		Mail:     e.Mail,
-	})
 }
 
 func (e *User) GetMailAsBSonQuery() (query bson.M) {
