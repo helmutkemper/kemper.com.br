@@ -1,11 +1,11 @@
-package SQLiteLanguage
+package main
 
 import (
 	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 
-func New() (referenceInicialized *SQLiteLanguage, err error) {
+func (e *SQLiteLanguage) New() (referenceInicialized *SQLiteLanguage, err error) {
 	referenceInicialized = &SQLiteLanguage{}
 	err = referenceInicialized.Connect(constants.KSQLiteConnectionString)
 	if err != nil {

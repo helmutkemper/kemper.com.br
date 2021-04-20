@@ -1,4 +1,4 @@
-package SQLiteLanguage
+package main
 
 import (
 	"database/sql"

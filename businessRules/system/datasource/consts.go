@@ -9,4 +9,7 @@ const (
 
 	// KTotalMadness (Português): Feito apenas para demonstração
 	KTotalMadness
+
+	// KPlugin (Português): Carrega um plugin externo com o módulo escolhido
+	KPlugin
 )

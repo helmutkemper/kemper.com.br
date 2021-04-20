@@ -1,4 +1,4 @@
-package MongoDBLanguage
+package main
 
 import (
 	"github.com/helmutkemper/kemper.com.br/constants"

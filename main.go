@@ -16,7 +16,7 @@ func main() {
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	err = datasource.Linker.Init(datasource.KTotalMadness)
+	err = datasource.Linker.Init(datasource.KPlugin)
 	if err != nil {
 		util.TraceToLog()
 		panic(err)
