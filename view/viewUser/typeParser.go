@@ -1,10 +1,10 @@
 package viewUser
 
 import (
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	dataformat "github.com/helmutkemper/kemper.com.br.module.dataformat"
 )
 
-func (e *User) Parser(user *dataFormat.User) {
+func (e *User) Parser(user *dataformat.User) {
 	*e = User(*user)
 	e.Password = ""
 }

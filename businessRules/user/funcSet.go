@@ -3,8 +3,8 @@ package user
 import (
 	"encoding/base64"
 	"errors"
+	"github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
-	"github.com/helmutkemper/kemper.com.br/constants"
 	"log"
 )
 

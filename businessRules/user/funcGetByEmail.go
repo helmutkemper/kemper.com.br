@@ -2,16 +2,16 @@ package user
 
 import (
 	"errors"
+	dataformat "github.com/helmutkemper/kemper.com.br.module.dataformat"
+	"github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	systemDatasource "github.com/helmutkemper/kemper.com.br/businessRules/system/datasource"
-	"github.com/helmutkemper/kemper.com.br/constants"
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
 	"github.com/helmutkemper/kemper.com.br/view/viewUser"
 	"log"
 )
 
 // GetByEmail (Português):
 func (e *BusinessRules) GetByEmail(mail string) (length int, user viewUser.User, err error) {
-	var userFromDatasource dataFormat.User
+	var userFromDatasource dataformat.User
 	var matched bool
 
 	matched, err = e.verifyMailSyntax(mail)

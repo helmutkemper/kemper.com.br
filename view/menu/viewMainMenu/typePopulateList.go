@@ -1,11 +1,11 @@
 package viewMainMenu
 
 import (
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	dataformat "github.com/helmutkemper/kemper.com.br.module.dataformat"
 )
 
 // populateList (Português): Relaciona o item do datasource com o item do menu
 type populateList struct {
-	menuFromDataSource *[]dataFormat.Menu
+	menuFromDataSource *[]dataformat.Menu
 	menuToPopulate     *[]Item
 }

@@ -1,11 +1,11 @@
 package viewMainMenu
 
 import (
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	dataformat "github.com/helmutkemper/kemper.com.br.module.dataformat"
 )
 
 // getRefs (Português): Gera uma lista de referências dos itens do datasource para ser usado na função Parser()
-func (e *Menu) getRefs(menuFromDataSource *[]dataFormat.Menu, menuToPopulate *[]Item) (pointer []populateList) {
+func (e *Menu) getRefs(menuFromDataSource *[]dataformat.Menu, menuToPopulate *[]Item) (pointer []populateList) {
 	pointer = make([]populateList, 0)
 	*menuToPopulate = make([]Item, len(*menuFromDataSource))
 

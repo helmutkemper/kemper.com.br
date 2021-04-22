@@ -3,7 +3,7 @@ package user
 import (
 	"encoding/base64"
 	"errors"
-	"github.com/helmutkemper/kemper.com.br/constants"
+	"github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	"log"
 )
 

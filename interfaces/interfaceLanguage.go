@@ -1,13 +1,13 @@
 package interfaces
 
 import (
-	"github.com/helmutkemper/kemper.com.br/dataAccess/dataFormat"
+	dataformat "github.com/helmutkemper/kemper.com.br.module.dataformat"
 )
 
 type InterfaceLanguage interface {
 	Connect(connectionString string, args ...interface{}) (err error)
 	Close() (err error)
 	Install() (err error)
-	GetAll() (languagues []dataFormat.Languages, length int, err error)
+	GetAll() (languagues []dataformat.Languages, length int, err error)
 	Set(id, name string) (err error)
 }

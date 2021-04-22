@@ -3,7 +3,7 @@ package passwordHash
 import (
 	"bytes"
 	"errors"
-	"github.com/helmutkemper/kemper.com.br/constants"
+	constants "github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	"log"
 )
 

@@ -2,26 +2,30 @@ package datasource
 
 import (
 	"errors"
-	"github.com/helmutkemper/kemper.com.br/constants"
+	constants "github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
-	"log"
-	"plugin"
-
-	//"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBLanguage"
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBMenu"
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/MongoDB/MongoDBUser"
-	//"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage"
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteMenu"
-	"github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteUser"
 	"github.com/helmutkemper/kemper.com.br/toModule/passwordHash"
 	"github.com/helmutkemper/kemper.com.br/toModule/uID"
-	"github.com/helmutkemper/kemper.com.br/util"
+	"github.com/helmutkemper/util"
+	"log"
+	"plugin"
 )
 
 // Init (Português): Inicializa o datasource escolhido
 //   name: tyme Name
 //     KSQLite: Inicializa o banco de dados como sendo o SQLite
 func (e *RefList) Init(name Name) (err error) {
+	var ok bool
+
+	var menu *plugin.Plugin
+	var menuSymbol plugin.Symbol
+
+	var user *plugin.Plugin
+	var userSymbol plugin.Symbol
+
+	var language *plugin.Plugin
+	var languaSymbol plugin.Symbol
+
 	err = errors.New(constants.KErrorInicializeDataSourceFirst)
 
 	// Inicializa o objeto Password
@@ -33,22 +37,69 @@ func (e *RefList) Init(name Name) (err error) {
 	switch name {
 
 	case KPlugin:
-		e.Menu, err = SQLiteMenu.New()
+		menu, err = plugin.Open("./plugin/menu.sqlite.so")
 		if err != nil {
 			util.TraceToLog()
 			return
 		}
 
-		e.User, err = SQLiteUser.New()
+		menuSymbol, err = menu.Lookup("Menu")
 		if err != nil {
 			util.TraceToLog()
 			return
 		}
 
-		var language *plugin.Plugin
-		var languaSymbol plugin.Symbol
-		var ok bool
-		language, err = plugin.Open("./plugin/language.sqlite.so")
+		e.Menu, ok = menuSymbol.(interfaces.InterfaceMenu)
+		if ok == false {
+			err = errors.New("plugin menu conversion into interface menu has an error")
+			util.TraceToLog()
+			return
+		}
+
+		err = e.Menu.Connect(constants.KSQLiteConnectionString)
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		err = e.Menu.Install()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		user, err = plugin.Open("./plugin/user.sqlite.so")
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		userSymbol, err = user.Lookup("User")
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		e.User, ok = userSymbol.(interfaces.InterfaceUser)
+		if ok == false {
+			err = errors.New("plugin user conversion into interface user has an error")
+			util.TraceToLog()
+			return
+		}
+
+		err = e.User.Connect(constants.KSQLiteConnectionString)
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		err = e.User.Install()
+		if err != nil {
+			util.TraceToLog()
+			return
+		}
+
+		language, err = plugin.Open("./plugin/languages.sqlite.so")
 		if err != nil {
 			util.TraceToLog()
 			return
@@ -81,17 +132,17 @@ func (e *RefList) Init(name Name) (err error) {
 
 	case KSQLite:
 
-		e.Menu, err = SQLiteMenu.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.Menu, err = SQLiteMenu.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
-		e.User, err = SQLiteUser.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.User, err = SQLiteUser.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
 		//e.Language, err = SQLiteLanguage.New()
 		//if err != nil {
@@ -100,17 +151,17 @@ func (e *RefList) Init(name Name) (err error) {
 		//}
 
 	case KMongoDB:
-		e.Menu, err = MongoDBMenu.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.Menu, err = MongoDBMenu.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
-		e.User, err = MongoDBUser.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.User, err = MongoDBUser.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
 		//e.Language, err = MongoDBLanguage.New()
 		//if err != nil {
@@ -120,18 +171,18 @@ func (e *RefList) Init(name Name) (err error) {
 
 	case KTotalMadness:
 		//SQLite
-		e.Menu, err = SQLiteMenu.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.Menu, err = SQLiteMenu.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
 		//MongoDB
-		e.User, err = MongoDBUser.New()
-		if err != nil {
-			util.TraceToLog()
-			return
-		}
+		//e.User, err = MongoDBUser.New()
+		//if err != nil {
+		//	util.TraceToLog()
+		//	return
+		//}
 
 		//SQLite
 		//e.Language, err = SQLiteLanguage.New()
