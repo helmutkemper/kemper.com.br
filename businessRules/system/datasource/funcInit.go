@@ -7,7 +7,6 @@ import (
 	"github.com/helmutkemper/kemper.com.br/toModule/passwordHash"
 	"github.com/helmutkemper/kemper.com.br/toModule/uID"
 	"github.com/helmutkemper/util"
-	"log"
 	"plugin"
 )
 
@@ -16,6 +15,8 @@ import (
 //     KSQLite: Inicializa o banco de dados como sendo o SQLite
 func (e *RefList) Init(name Name) (err error) {
 	var ok bool
+
+	var newInterface interface{}
 
 	var menu *plugin.Plugin
 	var menuSymbol plugin.Symbol
@@ -99,7 +100,7 @@ func (e *RefList) Init(name Name) (err error) {
 			return
 		}
 
-		language, err = plugin.Open("./plugin/languages.sqlite.so")
+		language, err = plugin.Open("./plugin/languages.mongodb.so")
 		if err != nil {
 			util.TraceToLog()
 			return
@@ -118,17 +119,8 @@ func (e *RefList) Init(name Name) (err error) {
 			return
 		}
 
-		err = e.Language.Connect(constants.KSQLiteConnectionString)
-		if err != nil {
-			log.Printf("SQLiteLanguage.New().Connect().error: %v", err.Error())
-			return
-		}
-
-		err = e.Language.Install()
-		if err != nil {
-			log.Printf("SQLiteLanguage.New().Install().error: %v", err.Error())
-			return
-		}
+		newInterface, err = e.Language.New()
+		e.Language = newInterface.(interfaces.InterfaceLanguage)
 
 	case KSQLite:
 
