@@ -5,6 +5,7 @@ import (
 )
 
 type InterfaceMenu interface {
+	New() (referenceInicialized interface{}, err error)
 	Connect(connectionString string, args ...interface{}) (err error)
 	Close() (err error)
 	Get() (menu []dataformat.Menu, length int, err error)

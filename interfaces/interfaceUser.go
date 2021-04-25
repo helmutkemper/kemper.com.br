@@ -5,6 +5,7 @@ import (
 )
 
 type InterfaceUser interface {
+	New() (referenceInicialized interface{}, err error)
 	Connect(connectionString string, args ...interface{}) (err error)
 	Close() (err error)
 	Install() (err error)

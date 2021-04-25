@@ -6,10 +6,4 @@ const (
 
 	// KMongoDB (Português): Define o datasource como sendo o MongoDB
 	KMongoDB
-
-	// KTotalMadness (Português): Feito apenas para demonstração
-	KTotalMadness
-
-	// KPlugin (Português): Carrega um plugin externo com o módulo escolhido
-	KPlugin
 )
