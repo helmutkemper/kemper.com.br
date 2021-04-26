@@ -16,7 +16,7 @@ func main() {
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	err = datasource.Linker.Init(datasource.KMongoDB)
+	err = datasource.Linker.Init(datasource.KSQLite)
 	if err != nil {
 		util.TraceToLog()
 		panic(err)
