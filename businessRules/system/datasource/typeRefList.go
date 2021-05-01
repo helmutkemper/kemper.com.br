@@ -11,4 +11,5 @@ type RefList struct {
 	Language interfaces.InterfaceLanguage `json:"-"`
 	Password interfaces.InterfacePassword `json:"-"`
 	UniqueID interfaces.InterfaceUID      `json:"-"`
+	Jwt      interfaces.InterfaceJWT      `json:"-"`
 }

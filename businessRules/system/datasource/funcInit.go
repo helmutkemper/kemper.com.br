@@ -4,6 +4,7 @@ import (
 	"errors"
 	constants "github.com/helmutkemper/kemper.com.br.plugin.dataaccess.constants"
 	"github.com/helmutkemper/kemper.com.br/interfaces"
+	jwtverify "github.com/helmutkemper/kemper.com.br/toModule/JWT"
 	"github.com/helmutkemper/kemper.com.br/toModule/passwordHash"
 	"github.com/helmutkemper/kemper.com.br/toModule/uID"
 	"github.com/helmutkemper/util"
@@ -23,6 +24,15 @@ func (e *RefList) Init(name Name) (err error) {
 	// Inicializa o objeto UID
 	e.UniqueID = &uID.UID{}
 
+	// Inicializa o gerador/verificador de JWT
+	e.Jwt = &jwtverify.JwtVerify{}
+	err = e.Jwt.NewAlgorithm([]byte("colocar em constants")) //fixme
+	if err != nil {
+		util.TraceToLog()
+		return
+	}
+
+	// Inicializa o banco de dados
 	switch name {
 
 	case KMongoDB:
@@ -86,7 +96,7 @@ func (e *RefList) installMenuByPlugin(pluginPlath string) (err error) {
 
 	e.Menu, ok = menuSymbol.(interfaces.InterfaceMenu)
 	if ok == false {
-		err = errors.New("plugin language conversion into interface language has an error")
+		err = errors.New("plugin menu conversion into interface menu has an error")
 		util.TraceToLog()
 		return
 	}
@@ -119,7 +129,7 @@ func (e *RefList) installUserByPlugin(pluginPlath string) (err error) {
 
 	e.User, ok = userSymbol.(interfaces.InterfaceUser)
 	if ok == false {
-		err = errors.New("plugin language conversion into interface language has an error")
+		err = errors.New("plugin user conversion into interface user has an error")
 		util.TraceToLog()
 		return
 	}
