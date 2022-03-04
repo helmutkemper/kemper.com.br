@@ -46,19 +46,25 @@ build-clean:
 .PHONY: plugins-clean
 ##
 plugins-clean:
-	@if [ -f ./main.site/plugin/languages.mongodb.so ]; then rm ./main.site/plugin/languages.mongodb.so; fi
-	@if [ -f ./main.site/plugin/languages.sqlite.so ]; then rm ./main.site/plugin/languages.sqlite.so; fi
-	@if [ -f ./main.site/plugin/menu.sqlite.so ]; then rm ./main.site/plugin/menu.sqlite.so; fi
-	@if [ -f ./main.site/plugin/menu.sqmongodb.so ]; then rm ./main.site/plugin/menu.sqmongodb.so; fi
-	@if [ -f ./main.site/plugin/user.mongodb.so ]; then rm ./main.site/plugin/user.mongodb.so; fi
-	@if [ -f ./main.site/plugin/user.sqlite.so ]; then rm ./main.site/plugin/user.sqlite.so; fi
+	@if [ -f ./cmd/plugin/languages.mongodb.so ]; then rm ./cmd/plugin/languages.mongodb.so; fi
+	@if [ -f ./cmd/plugin/languages.sqlite.so ]; then rm ./cmd/plugin/languages.sqlite.so; fi
+	@if [ -f ./cmd/plugin/menu.sqlite.so ]; then rm ./cmd/plugin/menu.sqlite.so; fi
+	@if [ -f ./cmd/plugin/menu.sqmongodb.so ]; then rm ./cmd/plugin/menu.sqmongodb.so; fi
+	@if [ -f ./cmd/plugin/user.mongodb.so ]; then rm ./cmd/plugin/user.mongodb.so; fi
+	@if [ -f ./cmd/plugin/user.sqlite.so ]; then rm ./cmd/plugin/user.sqlite.so; fi
 
 .PHONY: build
 ##
 build:
-	$(MAKE) -C ./main.site tidy
-	$(MAKE) -C ./main.site build
+	$(MAKE) build-site
 	$(MAKE) plugins
 	@chmod +X ./build/site.so
 	@/usr/bin/open -a "/Applications/Google Chrome.app" 'http://localhost:3000/static/'
 	./build/site.so
+
+.PHONY: build-site
+##
+build-site:
+	$(MAKE) -C ./cmd tidy
+	$(MAKE) -C ./cmd build
+
