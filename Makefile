@@ -41,17 +41,17 @@ clean: build-clean plugins-clean
 .PHONY: build-clean
 ##
 build-clean:
-	@rm ./build/site.so
+	@if [ -f ./build/site.so ]; then rm ./build/site.so; fi
 
 .PHONY: plugins-clean
 ##
 plugins-clean:
-	@rm ./main.site/plugin/languages.mongodb.so
-	@rm ./main.site/plugin/languages.sqlite.so
-	@rm ./main.site/plugin/menu.sqlite.so
-	@rm ./main.site/plugin/menu.sqmongodb.so
-	@rm ./main.site/plugin/user.mongodb.so
-	@rm ./main.site/plugin/user.sqlite.so
+	@if [ -f ./main.site/plugin/languages.mongodb.so ]; then rm ./main.site/plugin/languages.mongodb.so; fi
+	@if [ -f ./main.site/plugin/languages.sqlite.so ]; then rm ./main.site/plugin/languages.sqlite.so; fi
+	@if [ -f ./main.site/plugin/menu.sqlite.so ]; then rm ./main.site/plugin/menu.sqlite.so; fi
+	@if [ -f ./main.site/plugin/menu.sqmongodb.so ]; then rm ./main.site/plugin/menu.sqmongodb.so; fi
+	@if [ -f ./main.site/plugin/user.mongodb.so ]; then rm ./main.site/plugin/user.mongodb.so; fi
+	@if [ -f ./main.site/plugin/user.sqlite.so ]; then rm ./main.site/plugin/user.sqlite.so; fi
 
 .PHONY: build
 ##
