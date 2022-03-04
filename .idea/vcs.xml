@@ -8,7 +8,12 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/module/kemper.com.br.module.dataformat" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.dataaccess.constants" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.mongodb.languages" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.mongodb.menu" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.mongodb.user" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.sqlite.languages" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.sqlite.menu" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/plugin/kemper.com.br.plugin.sqlite.user" vcs="Git" />
   </component>
 </project>
