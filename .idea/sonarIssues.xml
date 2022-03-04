@@ -8,6 +8,51 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia1/main.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia1/tarde/main.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia2/manha/main.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia2/tarde/cache/typeCache.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia2/tarde/commonTypes/typeCacheData.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia2/tarde/commonTypes/typeCacheKey.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/dia2/tarde/main.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/main/main.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../cacheComplexContainerTest/readme.md">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../kemper.com.br.plugin.sqllite.languages/funcGetAll.go">
           <value>
             <set />
@@ -99,6 +144,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/businessRules/system/datasource/funcInit.go">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/businessRules/system/datasource/typeRefList.go">
           <value>
             <set />
           </value>

@@ -2,9 +2,9 @@
   <configuration default="false" name="qlitelanguage.so" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="kemper.com.br" />
     <working_directory value="$PROJECT_DIR$" />
-    <go_parameters value="-buildmode=plugin -o $PROJECT_DIR$/plugin/language.sqlite.so" />
+    <go_parameters value="-buildmode=plugin -o $PROJECT_DIR$/main.site/plugin/language.sqlite.so" />
     <kind value="PACKAGE" />
-    <package value="github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage" />
+    <package value="github.com/helmutkemper/kemper.com.br.plugin.sqlite.languages" />
     <directory value="$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteLanguage" />
     <filePath value="github.com/helmutkemper/kemper.com.br/toModule/dataAccess/SQLite/SQLiteLanguage/typeLanguage.go|$PROJECT_DIR$/toModule/dataAccess/SQLite/SQLiteLanguage/typeLanguage.go" />
     <output_directory value="$PROJECT_DIR$/plugin" />
