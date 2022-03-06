@@ -58,7 +58,12 @@ plugins-clean:
 build:
 	$(MAKE) build-site
 	$(MAKE) plugins
-	@chmod +X ./build/site.so
+	$(MAKE) open-site
+
+.PHONY: open-site
+##
+open-site:
+	@if [ -f ./build/site.so ]; then echo site found; else $(MAKE) build-site; $(MAKE) plugins; fi
 	@/usr/bin/open -a "/Applications/Google Chrome.app" 'http://localhost:3000/static/'
 	./build/site.so
 
@@ -67,4 +72,4 @@ build:
 build-site:
 	$(MAKE) -C ./cmd tidy
 	$(MAKE) -C ./cmd build
-
+	@chmod +X ./build/site.so

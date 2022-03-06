@@ -22,9 +22,9 @@
     <style>
         html, body, #container {
             position: fixed;
-            left: 0px;
+            left: 0%;
             top: 0px;
-            width: 100%;
+            width: 80%;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -202,6 +202,153 @@
         }
 
     </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+        button{
+            outline: none;
+            margin: 10px;
+            width: 50px;
+            background: #2b396e;
+            border: 1px solid #7ad1d7;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            padding: 5px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .menuContainer{
+            width:50px;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+            background-color:#2b396e;
+            border-radius: 1rem;
+            color: #fff;
+            transition: all 0.5s;
+            overflow: hidden;
+        }
+        .light{
+            background-color:#7ad1d7;
+        }
+        .wide{
+            width: 250px;
+        }
+        /*style navicon bar*/
+        .show{
+            display:block;
+            background-color:initial;
+            width:40px;
+            height:30px;
+            border:none;
+            outline:none;
+            cursor:pointer;
+            align-self: flex-end;
+        }
+        .show span{
+            width:100%;
+            height:5px;
+            display:block;
+            background-color:#fff;
+            border-radius: 2px;
+            transition:all 0.5s;
+        }
+        .show span:first-of-type{
+            transform:translateY(-3px);
+        }
+        .show span:last-of-type{
+            transform:translateY(3px);
+        }
+        .show .show-icon:first-of-type{
+            display: none;
+        }
+        .show .show-icon:nth-of-type(2){
+            transform:rotate(45deg);
+        }
+        .show .show-icon:last-of-type{
+            transform:rotate(-45deg) translate(3px,-3px);
+        }
+        /*style portfolio*/
+        .portf{
+            margin-bottom: 1rem;
+        }
+        .portf .img{
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            background: url('https://cdn.pixabay.com/photo/2017/03/05/17/34/boy-2119178_960_720.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: auto;
+            cursor: pointer;
+        }
+        h2,h3{
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s;
+            font-family: 'Roboto', sans-serif;
+        }
+        h2{
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        h3{
+            font-size: 0.5rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+        }
+        h2.big-font{
+            font-size: 1.2rem;
+        }
+        h3.big-font{
+            font-size: 1rem;
+        }
+        /*style menu*/
+        .menu{
+            list-style: none;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            align-items: center;
+        }
+        .menu li{
+            cursor: pointer;
+            width: 100%;
+            text-align:left;
+            transition: background 0.4s linear;
+        }
+        .menu li:last-of-type{
+            margin-bottom: 0;
+        }
+        .menu li:hover{
+            background-color:rgba(255, 255, 255, 0.25);
+
+        }
+        .menu a{
+            display: none;
+            color: #fff;
+            text-decoration: none;
+            font-family: sans-serif;
+            text-align: center;
+            transition: all 0.5s;
+            font-family: 'Roboto', sans-serif;
+        }
+        .menu a.show-anchor{
+            display: inline-block;
+            font-size: 1rem;
+        }
+        .menu li .icons{
+            display: inline-block;
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
+        .menu a.show-anchor li{
+            text-align:left;
+        }
+    </style>
 </header>
 <body>
 
@@ -220,7 +367,18 @@
 
 </div>
 <div id="container" class="monaco-editor-adjust"></div>
-<div id="youtube">
+<!--div id="tree">
+    <ul id="treeview"></ul>
+</div-->
+<!-- font awsome -->
+<div class="menuContainer">
+    <button class="show">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul id="menuContainer_content" class="menu"><li><i class="fa fa-home icons" aria-hidden="true"></i><a href="#">Home</a></li><li><i class="fa fa-envelope icons" aria-hidden="true"></i><a href="#">Messages</a></li><li><i class="fa fa-cog icons" aria-hidden="true"></i><a href="#">Setting</a></li><li><i class="fa fa-user-o icons" aria-hidden="true"></i><a href="#">Profile</a></li><li><i class="fa fa-calendar-o icons" aria-hidden="true"></i><a href="#">Calender</a></li></ul>
+</div><div id="youtube">
     <div id="mediaPlayer"></div>
 </div>
 
@@ -739,6 +897,43 @@ editor.readOnly = false
     var mediaPlayer;
     var notification;
     $(document).ready(function() {
+
+
+        //treeview ********************************************************************************************************************
+        $("#treeview").kendoTreeView({
+            template: "<span class='k-sprite #= item.icon #' style='color: #= item.text #'>#= item.text # color:#: item.color #</span>",
+            dataSource: [
+                {
+                    text: "green",
+                    color: "green",
+                    //icon: "folder",
+                    items: [
+                        {
+                            text: "yellow",
+                            color: "yellow",
+                            //icon: "image"
+                        },
+                        {
+                            text: "red",
+                            color: "red",
+                            //icon: "pdf"
+                        }
+                    ]
+                },
+                {
+                    text: "blue",
+                    color: "blue",
+                    //icon: "html"
+                }
+            ]
+        });
+        //treeview ********************************************************************************************************************
+
+
+
+
+
+
         notification = $("#notification").kendoNotification({
             position: {
                 pinned: true,
@@ -1057,7 +1252,41 @@ editor.readOnly = false
 
     });
 </script>
+<script>
+    var container = document.querySelector('.menuContainer'),
+        btn = document.querySelector('button'),
+        btn2 = document.querySelector('.show'),
+        headings = document.querySelectorAll('.portf h2,.portf h3'),
+        anchor = document.querySelectorAll('.menu a'),
+        spany = document.querySelectorAll('.show span'),
+        statusMenu = false,
+        content_a = '<li><i class="fa fa-home icons" aria-hidden="true"></i><a href="#">Home</a></li><li><i class="fa fa-envelope icons" aria-hidden="true"></i><a href="#">Messages</a></li><li><i class="fa fa-cog icons" aria-hidden="true"></i><a href="#">Setting</a></li><li><i class="fa fa-user-o icons" aria-hidden="true"></i><a href="#">Profile</a></li><li><i class="fa fa-calendar-o icons" aria-hidden="true"></i><a href="#">Calender</a></li>',
+        content_b = '<li><i class="fa fa-home icons" aria-hidden="true"></i><a href="#">Home</a><li><i class="fa fa-user-o icons" aria-hidden="true"></i><a href="#">Profile</a></li><li><i class="fa fa-calendar-o icons" aria-hidden="true"></i><a href="#">Calender</a></li>';
+    //document.getElementById("menuContainer_content").innerHTML = content_b;
+    btn2.addEventListener('click', function () {
+        'use strict';
+        statusMenu = !statusMenu;
+        spany.forEach(function (item) {
+            return item.classList.toggle('show-icon');
+        });
+        container.classList.toggle('wide');
+        anchor.forEach(function (item2) {
+            return item2.classList.toggle('show-anchor');
+        });
+        headings.forEach(function (item3) {
+            return item3.classList.toggle('big-font');
+        });
 
+        if (statusMenu === true) {
+            //document.getElementById("menuContainer_content").innerHTML = content_a;
+        }
+        else {
+            //document.getElementById("menuContainer_content").innerHTML = content_b;
+        }
+    }, false);
+    // inspired by Auto Layout Test designed by Catherine wang
+    // https://dribbble.com/shots/3415024-Auto-Layout-Test
+</script>
 <style>
     /* Notifications */
     .k-notification h3 {
@@ -1076,6 +1305,12 @@ editor.readOnly = false
         height: 100px;
     }
 
+</style>
+
+<style>
+    #treeview .k-sprite {
+        background-image: url("./kendo/examples/content/web/treeview/coloricons-sprite.png");
+    }
 </style>
 
 <span id="notification" style="display:none;"></span>

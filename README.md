@@ -17,6 +17,12 @@ Ele irá gerar um `build` do executável principal e `build` para todos os `plug
 Os principais comandos são:
 
 ```shell
+  # Abre o site
+  make open-site
+  
+  # Monta/refaz apenas o site
+  make build-site
+  
   # Monta o site e todos os plugins
   make build
   
